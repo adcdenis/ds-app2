@@ -7,7 +7,7 @@ import {
   Menu,
   MenuItem,
   Fab,
-  Link
+  //Link
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -24,7 +24,7 @@ import classNames from "classnames";
 import useStyles from "./styles";
 
 // components
-import { Badge, Typography, Button } from "../Wrappers/Wrappers";
+import { Badge, Typography } from "../Wrappers/Wrappers";
 import Notification from "../Notification/Notification";
 import UserAvatar from "../UserAvatar/UserAvatar";
 

@@ -10,15 +10,15 @@ import {
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
   BorderAll as TableIcon,
-  QuestionAnswer as SupportIcon,
-  LibraryBooks as LibraryIcon,
-  HelpOutline as FAQIcon,
+  //QuestionAnswer as SupportIcon,
+  //LibraryBooks as LibraryIcon,
+  //HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import classNames from 'classnames';
 
 import SidebarLink from './components/SidebarLink/SidebarLinkContainer';
-import Dot from './components/Dot';
+//import Dot from './components/Dot';
 
 const structure = [
   { id: 0, label: 'Dashboard', link: '/app/dashboard', icon: <HomeIcon /> },
@@ -36,7 +36,7 @@ const structure = [
       { label: 'Maps', link: '/app/ui/maps' },
     ],
   },
-  { id: 5, type: 'divider' },
+  /*{ id: 5, type: 'divider' },
   { id: 6, type: 'title', label: 'HELP' },
   { id: 7, label: 'Library', link: '', icon: <LibraryIcon /> },
   { id: 8, label: 'Support', link: '', icon: <SupportIcon /> },
@@ -45,7 +45,7 @@ const structure = [
   { id: 11, type: 'title', label: 'PROJECTS' },
   { id: 12, label: 'My recent', link: '', icon: <Dot size="small" color="secondary" /> },
   { id: 13, label: 'Starred', link: '', icon: <Dot size="small" color="primary" /> },
-  { id: 14, label: 'Background', link: '', icon: <Dot size="small" color="secondary" /> },
+  { id: 14, label: 'Background', link: '', icon: <Dot size="small" color="secondary" /> },*/
 ];
 
 const SidebarView = ({ classes, theme, toggleSidebar, isSidebarOpened, isPermanent, location }) => {

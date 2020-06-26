@@ -1,6 +1,4 @@
 import React from "react"
-import Content from "../common/template/content"
-import ContentHeader from "../common/template/contentHeader"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import ClienteLista from './clienteList'
@@ -14,12 +12,7 @@ class Cliente extends React.Component {
 
   render() {
     return (
-      <div>
-        <ContentHeader title="Clientes" small="Versão 1.0" />
-        <Content>
-          <ClienteLista />
-        </Content>
-      </div>
+      <ClienteLista />
     )
   }
 }

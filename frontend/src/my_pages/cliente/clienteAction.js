@@ -2,7 +2,7 @@ import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 import { initialize } from 'redux-form'
 //import { reset as resetForm, initialize } from 'redux-form'
-import Consts from '../consts'
+import Consts from '../../my_common/consts'
 
 const formatar = (data) => {
   const ano = data.getFullYear()
