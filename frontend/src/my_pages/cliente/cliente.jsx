@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import ClienteLista from './clienteList'
 import { create, update, excluir, init } from './clienteAction'
+import PageTitle from "../../components/PageTitle";
 
 class Cliente extends React.Component {
 
@@ -12,7 +13,10 @@ class Cliente extends React.Component {
 
   render() {
     return (
+      <>
+      <PageTitle title="Clientes"/>
       <ClienteLista />
+      </>
     )
   }
 }

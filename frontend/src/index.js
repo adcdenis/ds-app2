@@ -10,7 +10,7 @@ import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
 
 import { Provider } from 'react-redux'
-import reducers from '../src/main/reducers'
+import reducers from '../src/my_main/reducers'
 import promise from 'redux-promise'
 import thunk from 'redux-thunk'
 import multi from 'redux-multi'

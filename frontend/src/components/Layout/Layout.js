@@ -13,9 +13,11 @@ import useStyles from "./styles";
 // components
 import Header from "../Header";
 import Sidebar from "../Sidebar";
+import Messages from '../../my_common/msg/msg'
+import Toast from '../../my_common/msg/toast'
 
 // pages
-import Dashboard from "../../pages/dashboard";
+//import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
@@ -23,6 +25,7 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import Clientes from '../../my_pages/cliente/cliente'
+import DashboardMy from "../../my_pages/dashboard/dashboard";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -45,7 +48,7 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              <Route path="/app/dashboard" component={Dashboard} />
+              <Route path="/app/dashboard" component={DashboardMy} />
               <Route path="/app/clientes" component={Clientes} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
@@ -60,6 +63,8 @@ function Layout(props) {
               <Route path="/app/ui/charts" component={Charts} />
             </Switch>
           </div>
+          <Messages/>
+          <Toast/>
         </>
     </div>
   );

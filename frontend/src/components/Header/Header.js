@@ -16,7 +16,7 @@ import {
   Person as AccountIcon,
   Search as SearchIcon,
   Send as SendIcon,
-  ArrowBack as ArrowBackIcon,
+  //ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import classNames from "classnames";
 
@@ -117,7 +117,7 @@ export default function Header(props) {
           )}
         >
           {layoutState.isSidebarOpened ? (
-            <ArrowBackIcon
+            <MenuIcon
               classes={{
                 root: classNames(
                   classes.headerIcon,

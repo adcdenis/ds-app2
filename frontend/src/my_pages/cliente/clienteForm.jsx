@@ -52,9 +52,9 @@ const validate = values => {
     errors.email = 'Endereço de E-Mail inválido'
   }
 
-  if (values.telefone <= 0) {
-    errors.telefone = 'Digite um valor maior que zero!'
-  }
+  //if (values.telefone <= 0) {
+    //errors.telefone = 'Digite um valor maior que zero!'
+  //}
 
   return errors
 }
@@ -66,7 +66,6 @@ class ClienteForm extends React.Component {
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
-        
           <div>
             <Field
               name='nome'
@@ -125,20 +124,17 @@ class ClienteForm extends React.Component {
               floatingLabelText="Observação"
               component={TextField}
               fullWidth
-              multiline={true}
+              multiline
               style={{ marginRight: 20, marginTop: 5 }}
             />
           </div>
-          <div className='box-footer'>
+          <br/><br/>
           <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
             {this.props.buttonLabel}
           </Button>
           <Button variant="contained" onClick={() => this.props.cancelar()} startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
             Cancelar
               </Button>
-
-        </div>
-
       </form >
     )
   }

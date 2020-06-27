@@ -90,7 +90,7 @@ const Header = ({ classes, isSidebarOpened, toggleSidebar, ...props }) => (
         )}
       >
         {isSidebarOpened ? (
-          <ArrowBackIcon
+          <MenuIcon
             classes={{
               root: classNames(classes.headerIcon, classes.headerIconCollapse)
             }}

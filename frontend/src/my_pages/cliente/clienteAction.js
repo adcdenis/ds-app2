@@ -3,6 +3,7 @@ import { toastr } from 'react-redux-toastr'
 import { initialize } from 'redux-form'
 //import { reset as resetForm, initialize } from 'redux-form'
 import Consts from '../../my_common/consts'
+//import { toast } from 'react-toastify';
 
 const formatar = (data) => {
   const ano = data.getFullYear()
@@ -83,6 +84,7 @@ function invoker(values, method) {
     axios[method](`${Consts.API_URL}/clientes/${value_id}`, values)
       .then((resp) => {
         toastr.success('Sucesso', 'Operação realizada com sucesso!')
+        //toast('Sucesso')
         dispatch([init()])
       })
       .catch((e) => {
