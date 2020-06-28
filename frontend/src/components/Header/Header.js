@@ -3,7 +3,7 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  InputBase,
+  //InputBase,
   Menu,
   MenuItem,
   Fab,
@@ -13,11 +13,13 @@ import {
   Menu as MenuIcon,
   MailOutline as MailIcon,
   NotificationsNone as NotificationsIcon,
-  Person as AccountIcon,
-  Search as SearchIcon,
+  //Person as AccountIcon,
+  //Search as SearchIcon,
   Send as SendIcon,
   //ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
+import TvIcon from "@material-ui/icons/Tv";
+
 import classNames from "classnames";
 
 // styles
@@ -28,13 +30,21 @@ import { Badge, Typography } from "../Wrappers/Wrappers";
 import Notification from "../Notification/Notification";
 import UserAvatar from "../UserAvatar/UserAvatar";
 
+//redux
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { logout } from "../../my_pages/auth/authActions";
+import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
+
 // context
 import {
   useLayoutState,
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../context/UserContext";
+//import { useUserDispatch} from "../../context/UserContext";
 
 const messages = [
   {
@@ -89,13 +99,13 @@ const notifications = [
   },
 ];
 
-export default function Header(props) {
+function Header(props) {
   var classes = useStyles();
 
   // global
   var layoutState = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
-  var userDispatch = useUserDispatch();
+  //var userDispatch = useUserDispatch();
 
   // local
   var [mailMenu, setMailMenu] = useState(null);
@@ -103,7 +113,7 @@ export default function Header(props) {
   var [notificationsMenu, setNotificationsMenu] = useState(null);
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
-  var [isSearchOpen, setSearchOpen] = useState(false);
+  //var [isSearchOpen, setSearchOpen] = useState(false);
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -136,31 +146,11 @@ export default function Header(props) {
             />
           )}
         </IconButton>
+        <TvIcon fontSize="large" />
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          React Material Admin
+          DS TV
         </Typography>
         <div className={classes.grow} />
-        <div
-          className={classNames(classes.search, {
-            [classes.searchFocused]: isSearchOpen,
-          })}
-        >
-          <div
-            className={classNames(classes.searchIcon, {
-              [classes.searchIconOpened]: isSearchOpen,
-            })}
-            onClick={() => setSearchOpen(!isSearchOpen)}
-          >
-            <SearchIcon classes={{ root: classes.headerIcon }} />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-          />
-        </div>
         <IconButton
           color="inherit"
           aria-haspopup="true"
@@ -202,7 +192,11 @@ export default function Header(props) {
           aria-controls="profile-menu"
           onClick={e => setProfileMenu(e.currentTarget)}
         >
-          <AccountIcon classes={{ root: classes.headerIcon }} />
+          <Avatar
+                alt={props.user.name}
+                src="http://lorempixel.com/160/160/people"
+                classes={{ root: classes.headerIcon }}
+              />
         </IconButton>
         <Menu
           id="mail-menu"
@@ -287,53 +281,35 @@ export default function Header(props) {
           disableAutoFocusItem
         >
           <div className={classes.profileMenuUser}>
+            <div className={classes.avatar}>
+              <Avatar
+                alt={props.user.name}
+                src="http://lorempixel.com/160/160/people"
+                className={classes.large} 
+              />
+            </div>
             <Typography variant="h4" weight="medium">
-              John Smith
+              {props.user.name}
             </Typography>
-            <Typography
-              className={classes.profileMenuLink}
-              component="a"
-              color="primary"
-              href="https://flatlogic.com"
-            >
-              Flalogic.com
+            <Typography color="text" colorBrightness="secondary">
+              {props.user.email}
             </Typography>
           </div>
-          <MenuItem
-            className={classNames(
-              classes.profileMenuItem,
-              classes.headerMenuItem,
-            )}
-          >
-            <AccountIcon className={classes.profileMenuIcon} /> Profile
-          </MenuItem>
-          <MenuItem
-            className={classNames(
-              classes.profileMenuItem,
-              classes.headerMenuItem,
-            )}
-          >
-            <AccountIcon className={classes.profileMenuIcon} /> Tasks
-          </MenuItem>
-          <MenuItem
-            className={classNames(
-              classes.profileMenuItem,
-              classes.headerMenuItem,
-            )}
-          >
-            <AccountIcon className={classes.profileMenuIcon} /> Messages
-          </MenuItem>
           <div className={classes.profileMenuUser}>
-            <Typography
-              className={classes.profileMenuLink}
-              color="primary"
-              onClick={() => signOut(userDispatch, props.history)}
+            <Button
+              variant="contained"
+              onClick={props.logout}
+              startIcon={<ExitToAppOutlinedIcon />}
             >
-              Sign Out
-            </Typography>
+              Sair
+            </Button>
           </div>
         </Menu>
       </Toolbar>
     </AppBar>
   );
 }
+
+const mapStateToProps = state => ({ user: state.auth.user });
+const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

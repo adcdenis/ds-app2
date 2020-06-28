@@ -156,4 +156,20 @@ export default makeStyles(theme => ({
   sendButtonIcon: {
     marginLeft: theme.spacing(2),
   },
+  avatar: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }));

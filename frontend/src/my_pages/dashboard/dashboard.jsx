@@ -5,8 +5,9 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { getCount } from './dashboardActions'
 import BoxGrid from '../../my_common/widget/BoxGrid'
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import Grid from '@material-ui/core/Grid';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
+import Grid from '@material-ui/core/Grid'
+import PageTitle from "../../components/PageTitle"
 
 class Dashboard extends React.Component {
 
@@ -19,6 +20,7 @@ class Dashboard extends React.Component {
 
     return (
       <>
+        <PageTitle title="DashBoard" />
         <Grid
           container
           spacing={2}
@@ -30,29 +32,6 @@ class Dashboard extends React.Component {
               icone={<MonetizationOnIcon style={{ fontSize: 80 }} />}
             />
           </Grid>
-          <Grid item>
-            <BoxGrid
-              label='Total de Clientes'
-              value={value}
-              icone={<MonetizationOnIcon style={{ fontSize: 80 }} />}
-            />
-          </Grid>
-          <Grid item>
-            <BoxGrid
-              label='Total de Clientes'
-              value={value}
-              icone={<MonetizationOnIcon style={{ fontSize: 80 }} />}
-            />
-          </Grid>
-          <Grid item>
-            <BoxGrid
-              label='Total de Clientes'
-              value={value}
-              icone={<MonetizationOnIcon style={{ fontSize: 80 }} />}
-            />
-          </Grid>
-
-
         </Grid>
 
       </>

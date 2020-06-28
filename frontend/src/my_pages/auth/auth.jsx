@@ -44,7 +44,7 @@ class Auth extends Component {
                             <Grid cols="12">
                             <Button type='submit' color="primary" variant="contained" startIcon={<LockOpenIcon />} style={{ marginLeft: 100 }} >
                             {loginMode ? 'Entrar' : 'Registrar'}
-                            </Button>                      
+                            </Button>
                             </Grid>
                         </Row>
                     </form>

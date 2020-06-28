@@ -82,7 +82,7 @@ class ClienteList extends React.Component {
         )
       case 'EXCLUIR':
         return (
-          <ClientForm buttonLabel='Excluir' onSubmit={this.props.excluir} />
+          <ClientForm buttonLabel='Excluir' onsubmit={this.props.excluir} readonly={true}/>
         )
       default:
         return <div></div>

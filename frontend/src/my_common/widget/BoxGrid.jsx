@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
     background: 'linear-gradient(45deg, #A6FFCB, #12D8FA, #1FA2FF)', /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    boxShadow: '0 3px 5px 2px black',
   },
   image: {
     width: 128,

@@ -25,7 +25,7 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import Clientes from '../../my_pages/cliente/cliente'
-import DashboardMy from "../../my_pages/dashboard/dashboard";
+import DashboardMy from "../../my_pages/dashboard/dashboard"
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";

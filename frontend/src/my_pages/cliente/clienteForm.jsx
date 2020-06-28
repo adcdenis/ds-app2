@@ -7,6 +7,7 @@ import { TextField } from 'redux-form-material-ui';
 import SaveIcon from '@material-ui/icons/Save';
 import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import Button from '@material-ui/core/Button';
+import If from '../../my_common/operador/if'
 
 /*import { makeStyles } from '@material-ui/core/styles';
 
@@ -53,7 +54,7 @@ const validate = values => {
   }
 
   //if (values.telefone <= 0) {
-    //errors.telefone = 'Digite um valor maior que zero!'
+  //errors.telefone = 'Digite um valor maior que zero!'
   //}
 
   return errors
@@ -66,75 +67,88 @@ class ClienteForm extends React.Component {
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
-          <div>
-            <Field
-              name='nome'
-              label='Nome'
-              hintText='Digite seu nome'
-              floatingLabelText="Nome (*)"
-              component={TextField}
-              fullWidth
-              style={{ marginRight: 20 }}
-            />
-          </div>
-          <div>
-            <Field
-              name='usuario'
-              label='Usuário (*)'
-              floatingLabelText="Usuário"
-              hintText='Digite seu usuário'
-              component={TextField}
-              style={{ marginRight: 20 }}
-            />
-            <Field
-              name='email'
-              label='Email'
-              hintText='Digite seu e-mail'
-              floatingLabelText="E-Mail"
-              component={TextField}
-              style={{ marginRight: 20 }}
-            />
-          </div>
-          <br />
-          <div>
-            <Field
-              name='vencimento'
-              label='Vencimento'
-              floatingLabelText="Vencimento (*)"
-              component={TextField}
-              type='date'
-              style={{ marginRight: 20 }}
-            />
-            <Field
-              name='telefone'
-              label='Telefone'
-              type="number"
-              hintText='Digite seu telefone'
-              floatingLabelText="Telefone"
-              component={TextField}
-              style={{ marginRight: 20 }}
-            />
-          </div>
-          <br />
-          <div>
-            <Field
-              name='observacao'
-              label='Observação'
-              hintText='Digite observações'
-              floatingLabelText="Observação"
-              component={TextField}
-              fullWidth
-              multiline
-              style={{ marginRight: 20, marginTop: 5 }}
-            />
-          </div>
-          <br/><br/>
+        <div>
+          <Field
+            name='nome'
+            readOnly={this.props.readonly}
+            label='Nome'
+            hintText='Digite seu nome'
+            floatingLabelText="Nome (*)"
+            component={TextField}
+            fullWidth
+            style={{ marginRight: 20 }}
+          />
+        </div>
+        <div>
+          <Field
+            name='usuario'
+            label='Usuário (*)'
+            floatingLabelText="Usuário (*)"
+            hintText='Digite seu usuário'
+            component={TextField}
+            readOnly={this.props.readonly}
+            style={{ marginRight: 20 }}
+          />
+          <Field
+            name='email'
+            label='Email'
+            hintText='Digite seu e-mail'
+            floatingLabelText="E-Mail"
+            component={TextField}
+            readOnly={this.props.readonly}
+            style={{ marginRight: 20 }}
+          />
+        </div>
+        <br />
+        <div>
+          <Field
+            name='vencimento'
+            label='Vencimento'
+            floatingLabelText="Vencimento (*)"
+            component={TextField}
+            type='date'
+            readOnly={this.props.readonly}
+            style={{ marginRight: 20 }}
+          />
+          <Field
+            name='telefone'
+            label='Telefone'
+            type="number"
+            hintText='Digite seu telefone'
+            floatingLabelText="Telefone"
+            component={TextField}
+            readOnly={this.props.readonly}
+            style={{ marginRight: 20 }}
+          />
+        </div>
+        <br />
+        <div>
+          <Field
+            name='observacao'
+            label='Observação'
+            hintText='Digite observações'
+            floatingLabelText="Observação"
+            component={TextField}
+            fullWidth
+            multiline
+            readOnly={this.props.readonly}
+            style={{ marginRight: 20, marginTop: 5 }}
+          />
+        </div>
+        <br /><br />
+        <If rendered={!this.props.readonly}>
           <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
             {this.props.buttonLabel}
           </Button>
-          <Button variant="contained" onClick={() => this.props.cancelar()} startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
-            Cancelar
-              </Button>
+        </If>
+        <If rendered={this.props.readonly}>
+          <Button onClick={this.props.onsubmit} color="primary" variant="contained" startIcon={<SaveIcon />} >
+            {this.props.buttonLabel}
+          </Button>
+        </If>
+        <Button variant="contained" onClick={() => this.props.cancelar()} startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+          Cancelar
+        </Button>
       </form >
     )
   }
