@@ -4,11 +4,11 @@ import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { login, signup } from './authActions'
-import Row from '../common/template/row'
-import Grid from '../../common_my/layolt/grid'
+//import Row from '../common/template/row'
+//import Grid from '../../common_my/layolt/grid'
 //import If from '../common/operador/if'
-import Messages from '../../common_my/msg/msg'
-import Input from '../../common_my/form/InputAuth'
+import Messages from '../../my_common/msg/msg'
+import Input from '../../my_common/form/InputAuth'
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
 class Auth extends Component {
@@ -40,13 +40,11 @@ class Auth extends Component {
                             placeholder="Senha" icon='lock' />
                         <Field component={Input} type="password" name="confirm_password"
                             placeholder="Confirmar Senha" icon='lock' hide={loginMode} />
-                        <Row>
-                            <Grid cols="12">
-                            <Button type='submit' color="primary" variant="contained" startIcon={<LockOpenIcon />} style={{ marginLeft: 100 }} >
+
+                        <Button type='submit' color="primary" variant="contained" startIcon={<LockOpenIcon />} style={{ marginLeft: 100 }} >
                             {loginMode ? 'Entrar' : 'Registrar'}
-                            </Button>
-                            </Grid>
-                        </Row>
+                        </Button>
+
                     </form>
                     <br />
                     <a href='#!' onClick={() => this.changeMode()}>

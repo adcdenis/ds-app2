@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
 
 import Themes from "./themes";
-import App from "./components/App";
+//import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
@@ -17,6 +17,7 @@ import multi from 'redux-multi'
 import { applyMiddleware, createStore } from 'redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import AuthOrApp from '../src/my_main/authOrApp'
 
 const devTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -31,7 +32,7 @@ ReactDOM.render(
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
         <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <App />
+        <AuthOrApp />
         </MuiThemeProvider>
       </ThemeProvider>
     </UserProvider>

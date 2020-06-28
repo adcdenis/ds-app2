@@ -1,11 +1,11 @@
-import '../common/template/dependencies'
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import App from './app'
-import Auth from '../auth/auth'
-import { validateToken } from '../auth/authActions'
+import App from "../components/App";
+import Auth from '../my_pages/auth/auth'
+import Auth2 from '../my_pages/auth/auth2'
+import { validateToken } from '../my_pages/auth/authActions'
 
 class AuthOrApp extends Component {
 
