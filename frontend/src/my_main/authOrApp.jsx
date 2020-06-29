@@ -20,7 +20,7 @@ class AuthOrApp extends Component {
             axios.defaults.headers.common['authorization'] = user.token
             return <App>{this.props.children}</App>
         } else if (!user && !validToken) {
-            return <Auth />
+            return <Auth2 />
         } else {
             return false
         }

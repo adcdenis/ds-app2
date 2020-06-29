@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,14 +17,32 @@ import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { login, signup } from './authActions'
+//import { TextField } from 'redux-form-material-ui';
+
+const renderInput = ({
+    label,
+    input,
+    meta: { touched, invalid, error },
+    ...custom
+  }) => (
+      <TextField
+        label={label}
+        placeholder={label}
+        error={touched && invalid}
+        helperText={touched && error}
+        InputLabelProps={{ shrink: true }}
+        {...input}
+        {...custom}
+      />
+    )
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-      </Link>{' '}
+                CanutoBR
+            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -62,9 +80,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Auth2(props) {
-    const classes = useStyles();
 
+
+const onSubmit = (values, props, loginMode) => {//continuar aqui
+    const { login, signup } = props
+    //this.state.loginMode ? login(values) : signup(values)
+    loginMode ? login(values) : signup(values)
+}
+
+/*const changeMode = () => {
+    //this.setState({ loginMode: !this.state.loginMode })
+    setLoginMode(!loginMode)
+}*/
+
+const Auth2 = (props) => {
+    const classes = useStyles();
+    const [loginMode, setLoginMode] = useState(true);
+    const { handleSubmit } = props
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -75,10 +107,11 @@ function Auth2(props) {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
-          </Typography>
-                    <form className={classes.form} noValidate>
-                        <TextField
+                        Login
+                    </Typography>
+                    <form className={classes.form} noValidate onSubmit={handleSubmit(v => onSubmit(v,props, loginMode))}>
+
+                        <Field component={renderInput}
                             variant="outlined"
                             margin="normal"
                             required
@@ -89,7 +122,7 @@ function Auth2(props) {
                             autoComplete="email"
                             autoFocus
                         />
-                        <TextField
+                        <Field component={renderInput}
                             variant="outlined"
                             margin="normal"
                             required
@@ -100,10 +133,11 @@ function Auth2(props) {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
+
+                        {/*<FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
+                            label="Lembrar"
+                        />*/}
                         <Button
                             type="submit"
                             fullWidth
@@ -111,17 +145,18 @@ function Auth2(props) {
                             color="primary"
                             className={classes.submit}
                         >
-                            Sign In
-            </Button>
+                            Entrar
+                        </Button>
+
                         <Grid container>
-                            <Grid item xs>
+                            {/*<Grid item xs>
                                 <Link href="#" variant="body2">
-                                    Forgot password?
-                </Link>
-                            </Grid>
+                                   Esqueceu a senha?
+                                </Link>
+                            </Grid>*/}
                             <Grid item>
                                 <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    {"Não tem uma conta? Crie a sua"}
                                 </Link>
                             </Grid>
                         </Grid>
@@ -135,7 +170,6 @@ function Auth2(props) {
     );
 }
 
-Auth2 = reduxForm({ form: 'authForm' })(Auth2)
-const mapDispatchToProps = dispatch => bindActionCreators({ login, signup },
-    dispatch)
-export default connect(null, mapDispatchToProps)(Auth2)
+const Auth = reduxForm({ form: 'authForm' })(Auth2)
+const mapDispatchToProps = dispatch => bindActionCreators({ login, signup },dispatch)
+export default connect(null, mapDispatchToProps)(Auth)
