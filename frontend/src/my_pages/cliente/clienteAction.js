@@ -3,17 +3,10 @@ import { toastr } from 'react-redux-toastr'
 import { initialize } from 'redux-form'
 //import { reset as resetForm, initialize } from 'redux-form'
 import Consts from '../../my_common/consts'
+import {formatarFromJsonAnoMesDia, formatarFromDate} from '../../my_common/DateUtil'
 //import { toast } from 'react-toastify';
 
-const formatar = (data) => {
-  const ano = data.getFullYear()
-  const mes = `00${data.getMonth() + 1}`.slice(-2)
-  const dia = `00${data.getDate()}`.slice(-2)
-
-  return `${ano}-${mes}-${dia}`
-}
-
-const INITIAL_VALUES = { vencimento: formatar(new Date()) }
+const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) }
 
 export function getList() {
   const request = axios.get(`${Consts.API_URL}/clientes`)
@@ -30,8 +23,7 @@ export function create(values) {
 export function showCliente(cliente, funcao) {
   if (cliente) {
     //convert data
-    cliente.vencimento = formatar(new Date(cliente.vencimento))
-
+    cliente.vencimento = formatarFromJsonAnoMesDia(cliente.vencimento)
     return [
       initialize('ClienteForm', cliente),
       {

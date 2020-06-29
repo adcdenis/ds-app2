@@ -6,6 +6,7 @@ import MaterialTable from "material-table";
 import ClientForm from './clienteForm'
 import Button from '@material-ui/core/Button';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+import {formatarFromJsonDiaMesAno} from '../../my_common/DateUtil'
 //import Fab from '@material-ui/core/Fab';
 //import AddIcon from '@material-ui/icons/Add';
 
@@ -42,11 +43,12 @@ class ClienteList extends React.Component {
               }
             ]}
             options={{
-              actionsColumnIndex: -1
+              actionsColumnIndex: -1,
+              exportButton: true
             }}
             columns={[
               { title: "Nome", field: "nome" },
-              { title: "Vencimento", field: "vencimento", type: "date" },
+              { title: "Vencimento", field: "vencimento", type: "date", render:(rowData)=>(formatarFromJsonDiaMesAno(rowData.vencimento)) },
               { title: "Telefone", field: "telefone", type: "numeric" }
             ]}
             localization={{
