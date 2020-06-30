@@ -70,7 +70,7 @@ class ClienteForm extends React.Component {
         <div>
           <Field
             name='nome'
-            readOnly={this.props.readonly}
+            disabled={this.props.readonly}
             label='Nome'
             hintText='Digite seu nome'
             floatingLabelText="Nome (*)"
@@ -86,7 +86,7 @@ class ClienteForm extends React.Component {
             floatingLabelText="Usuário (*)"
             hintText='Digite seu usuário'
             component={TextField}
-            readOnly={this.props.readonly}
+            disabled={this.props.readonly}
             style={{ marginRight: 20 }}
           />
           <Field
@@ -95,7 +95,7 @@ class ClienteForm extends React.Component {
             hintText='Digite seu e-mail'
             floatingLabelText="E-Mail"
             component={TextField}
-            readOnly={this.props.readonly}
+            disabled={this.props.readonly}
             style={{ marginRight: 20 }}
           />
         </div>
@@ -107,7 +107,7 @@ class ClienteForm extends React.Component {
             floatingLabelText="Vencimento (*)"
             component={TextField}
             type='date'
-            readOnly={this.props.readonly}
+            disabled={this.props.readonly}
             style={{ marginRight: 20 }}
           />
           <Field
@@ -117,7 +117,7 @@ class ClienteForm extends React.Component {
             hintText='Digite seu telefone'
             floatingLabelText="Telefone"
             component={TextField}
-            readOnly={this.props.readonly}
+            disabled={this.props.readonly}
             style={{ marginRight: 20 }}
           />
         </div>
@@ -131,7 +131,7 @@ class ClienteForm extends React.Component {
             component={TextField}
             fullWidth
             multiline
-            readOnly={this.props.readonly}
+            disabled={this.props.readonly}
             style={{ marginRight: 20, marginTop: 5 }}
           />
         </div>
@@ -146,7 +146,8 @@ class ClienteForm extends React.Component {
             {this.props.buttonLabel}
           </Button>
         </If>
-        <Button variant="contained" onClick={() => this.props.cancelar()} startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+        <Button variant="contained" onClick={() => this.props.cancelar()} 
+        startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
           Cancelar
         </Button>
       </form >

@@ -109,11 +109,14 @@ export default makeStyles(theme => ({
   },
   profileMenu: {
     minWidth: 265,
+    boxShadow: '0 3px 5px 2px black',
   },
   profileMenuUser: {
     display: "flex",
     flexDirection: "column",
     padding: theme.spacing(2),
+    justifyContent: 'center',
+    alignItems: "center",
   },
   profileMenuItem: {
     color: theme.palette.text.hint,
@@ -161,7 +164,8 @@ export default makeStyles(theme => ({
     '& > *': {
       margin: theme.spacing(1),
     },
-    flexDirection: "row",
+    flexDirection: "column",
+    justifyContent: 'center',
     alignItems: "center",
   },
   small: {
@@ -171,5 +175,9 @@ export default makeStyles(theme => ({
   large: {
     width: theme.spacing(7),
     height: theme.spacing(7),
+  },
+  large2: {
+    width: theme.spacing(14),
+    height: theme.spacing(14),
   },
 }));

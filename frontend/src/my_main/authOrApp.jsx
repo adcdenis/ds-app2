@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import App from "../components/App";
 import Auth from '../my_pages/auth/auth'
-import Auth2 from '../my_pages/auth/auth2'
 import { validateToken } from '../my_pages/auth/authActions'
 
 class AuthOrApp extends Component {
@@ -20,7 +19,7 @@ class AuthOrApp extends Component {
             axios.defaults.headers.common['authorization'] = user.token
             return <App>{this.props.children}</App>
         } else if (!user && !validToken) {
-            return <Auth2 />
+            return <Auth />
         } else {
             return false
         }

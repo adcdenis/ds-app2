@@ -19,6 +19,7 @@ import {
   //ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import TvIcon from "@material-ui/icons/Tv";
+import Container from "@material-ui/core/Container";
 
 import classNames from "classnames";
 
@@ -193,10 +194,10 @@ function Header(props) {
           onClick={e => setProfileMenu(e.currentTarget)}
         >
           <Avatar
-                alt={props.user.name}
-                src="http://lorempixel.com/160/160/people"
-                classes={{ root: classes.headerIcon }}
-              />
+            alt={props.user.name}
+            src="http://lorempixel.com/160/160/people"
+            classes={{ root: classes.headerIcon }}
+          />
         </IconButton>
         <Menu
           id="mail-menu"
@@ -282,11 +283,13 @@ function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <div className={classes.avatar}>
-              <Avatar
-                alt={props.user.name}
-                src="http://lorempixel.com/160/160/people"
-                className={classes.large} 
-              />
+              <Container>
+                <Avatar
+                  alt={props.user.name}
+                  src="http://lorempixel.com/160/160/people"
+                  className={classes.large2}
+                />
+              </Container>
             </div>
             <Typography variant="h4" weight="medium">
               {props.user.name}
@@ -300,6 +303,7 @@ function Header(props) {
               variant="contained"
               onClick={props.logout}
               startIcon={<ExitToAppOutlinedIcon />}
+              color='primary'
             >
               Sair
             </Button>
