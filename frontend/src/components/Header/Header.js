@@ -298,10 +298,9 @@ function Header(props) {
               {props.user.email}
             </Typography>
           </div>
-          <div className={classes.profileMenuUser}>
+          <div className={classes.profileMenuUser} onClick={props.logout}>
             <Button
               variant="contained"
-              onClick={props.logout}
               startIcon={<ExitToAppOutlinedIcon />}
               color='primary'
             >

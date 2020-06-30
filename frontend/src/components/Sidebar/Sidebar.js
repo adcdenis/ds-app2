@@ -13,6 +13,7 @@ import {
 } from "@material-ui/icons";
 import PeopleIcon from '@material-ui/icons/People';
 import ComputerIcon from '@material-ui/icons/Computer';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -45,21 +46,27 @@ const structure = [
     link: "/app/servidores",
     icon: <ComputerIcon />,
   },
+  {
+    id: 3,
+    label: "Planos",
+    link: "/app/planos",
+    icon: <AccountBalanceIcon />,
+  },
   /*{
     id: 1,
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
   },*/
-  { id: 3, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { id: 4, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 4,
+    id: 5,
     label: "Notifications",
     link: "/app/notifications",
     icon: <NotificationsIcon />,
   },
   {
-    id: 5,
+    id: 6,
     label: "UI Elements",
     link: "/app/ui",
     icon: <UIElementsIcon />,

@@ -30,7 +30,7 @@ class ServidorList extends React.Component {
                 onClick: (event, rowData) => this.props.show(rowData, 'EXCLUIR')
               },
               {
-                icon: () => <Button variant="contained" color="primary" onClick={() => this.props.show()} startIcon={<AddBoxOutlinedIcon />}>Novo</Button>,
+                icon: () => <Button variant="contained" color="primary" startIcon={<AddBoxOutlinedIcon onClick={() => this.props.show()} />}>Novo</Button>,
                 tooltip: 'Adicionar',
                 isFreeAction: true,
                 onClick: () => this.props.show()

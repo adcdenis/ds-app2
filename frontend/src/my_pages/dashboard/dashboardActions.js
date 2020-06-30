@@ -8,3 +8,19 @@ export function getCount() {
     payload: request,
   }
 }
+
+export function getCountServidores() {
+  const request = axios.get(`${Consts.API_URL}/servidores/count`)
+  return {
+    type: 'TOTAL_SERVIDORES',
+    payload: request,
+  }
+}
+
+export function getCountPlanos() {
+  const request = axios.get(`${Consts.API_URL}/planos/count`)
+  return {
+    type: 'TOTAL_PLANOS',
+    payload: request,
+  }
+}

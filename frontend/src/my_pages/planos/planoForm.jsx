@@ -1,6 +1,6 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
-import { init, cancelar } from './servidorAction'
+import { init, cancelar } from './planoAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { TextField } from 'redux-form-material-ui';
@@ -12,7 +12,8 @@ import If from '../../my_common/operador/if'
 const validate = values => {
   const errors = {}
   const requiredFields = [
-    'nome'
+    'nome',
+    'valor'
   ]
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -23,10 +24,9 @@ const validate = values => {
   return errors
 }
 
-class ServidorForm extends React.Component {
+class PlanoForm extends React.Component {
 
   render() {
-    //const classes = useStyles();
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
@@ -42,6 +42,16 @@ class ServidorForm extends React.Component {
             style={{ marginRight: 20 }}
           />
         </div>
+        <Field
+            name='valor'
+            label='Valor'
+            type="number"
+            hintText='Digite valor'
+            floatingLabelText="Valor"
+            component={TextField}
+            disabled={this.props.readonly}
+            style={{ marginRight: 20 }}
+          />
         <br /><br />
         <If rendered={!this.props.readonly}>
           <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
@@ -63,6 +73,6 @@ class ServidorForm extends React.Component {
 }
 
 const mapStateToProps = state => ({})
-ServidorForm = reduxForm({ form: 'ServidorForm', validate, destroyOnUnmount: false })(ServidorForm)
+PlanoForm = reduxForm({ form: 'PlanoForm', validate, destroyOnUnmount: false })(PlanoForm)
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(ServidorForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PlanoForm);
