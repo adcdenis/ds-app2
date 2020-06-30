@@ -6,9 +6,18 @@ module.exports = function (server) {
    */
   const protectedApi = express.Router()
   server.use('/api', protectedApi)
-  //protectedApi.use(auth)
+  protectedApi.use(auth)
   const Cliente = require('../api/clientes/clienteService')
   Cliente.register(protectedApi, '/clientes')
+
+  //SERVIDOR
+  const Servidor = require('../api/servidores/servidorService')
+  Servidor.register(protectedApi, '/servidores')
+
+  //PLANOS
+  const Plano = require('../api/planos/planoService')
+  Plano.register(protectedApi, '/planos')
+
   /*
    * Rotas abertas
    */
