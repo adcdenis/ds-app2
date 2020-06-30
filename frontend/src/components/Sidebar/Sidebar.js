@@ -12,6 +12,7 @@ import {
   ArrowBack as ArrowBackIcon
 } from "@material-ui/icons";
 import PeopleIcon from '@material-ui/icons/People';
+import ComputerIcon from '@material-ui/icons/Computer';
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -38,21 +39,27 @@ const structure = [
     link: "/app/clientes",
     icon: <PeopleIcon />,
   },
+  {
+    id: 2,
+    label: "Servidores",
+    link: "/app/servidores",
+    icon: <ComputerIcon />,
+  },
   /*{
     id: 1,
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
   },*/
-  { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { id: 3, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 3,
+    id: 4,
     label: "Notifications",
     link: "/app/notifications",
     icon: <NotificationsIcon />,
   },
   {
-    id: 4,
+    id: 5,
     label: "UI Elements",
     link: "/app/ui",
     icon: <UIElementsIcon />,
