@@ -1,5 +1,6 @@
 const restful = require('node-restful')
 const mongoose = restful.mongoose
+const Schema = mongoose.Schema
 
 /*const creditSchema = new mongoose.Schema({
  name: { type: String, required: true },
@@ -20,8 +21,8 @@ const clienteSchema = new mongoose.Schema({
   vencimento: { type: Date, required: true },
   telefone: { type: Number, required: false },
   observacao: { type: String, required: false },
-  id_plano: { type: Number, required: false },
-  id_servidor: { type: Number, required: false }
+  plano: {type: Schema.ObjectId, ref: 'Plano'},
+  servidor: {type: Schema.ObjectId, ref: 'Servidor'},
 })
 
 module.exports = restful.model('Cliente', clienteSchema)

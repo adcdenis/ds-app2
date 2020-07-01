@@ -3,11 +3,14 @@ import { reduxForm, Field } from 'redux-form'
 import { init, cancelar } from './clienteAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { TextField } from 'redux-form-material-ui';
+import { TextField, SelectField } from 'redux-form-material-ui';
 import SaveIcon from '@material-ui/icons/Save';
 import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import Button from '@material-ui/core/Button';
 import If from '../../my_common/operador/if'
+
+import { getList } from '../../my_pages/servidor/servidorAction'
+import MenuItem from 'material-ui/MenuItem'
 
 /*import { makeStyles } from '@material-ui/core/styles';
 
@@ -62,8 +65,13 @@ const validate = values => {
 
 class ClienteForm extends React.Component {
 
+  componentDidMount() {
+    this.props.getList()
+
+  }
   render() {
     //const classes = useStyles();
+    console.log(this.props.listaServidor)
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
@@ -130,11 +138,23 @@ class ClienteForm extends React.Component {
             floatingLabelText="Observação"
             component={TextField}
             fullWidth
-            multiline
+            multiline="true"
             disabled={this.props.readonly}
             style={{ marginRight: 20, marginTop: 5 }}
           />
         </div>
+        <Field
+          name="servidor"
+          component={SelectField}
+          hintText="Servidor"
+          floatingLabelText="Servidor"
+        >
+          {this.props.listaServidor.map((servidor, i) => {
+            return (
+              <MenuItem id={i} value={servidor._id} primaryText={servidor.nome} />
+            )
+          })}
+        </Field>
         <br /><br />
         <If rendered={!this.props.readonly}>
           <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
@@ -146,8 +166,8 @@ class ClienteForm extends React.Component {
             {this.props.buttonLabel}
           </Button>
         </If>
-        <Button variant="contained" onClick={() => this.props.cancelar()} 
-        startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+        <Button variant="contained" onClick={() => this.props.cancelar()}
+          startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
           Cancelar
         </Button>
       </form >
@@ -157,7 +177,7 @@ class ClienteForm extends React.Component {
 
 //const selector = formValueSelector('ClienteForm')
 //const mapStateToProps = state => ({credits: selector(state, 'credits'), debts: selector(state, 'debts') })
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({ listaServidor: state.servidor.list })
 ClienteForm = reduxForm({ form: 'ClienteForm', validate, destroyOnUnmount: false })(ClienteForm)
-const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar, getList }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(ClienteForm);
