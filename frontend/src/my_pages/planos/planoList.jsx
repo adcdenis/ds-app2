@@ -38,13 +38,24 @@ class PlanoList extends React.Component {
             ]}
             options={{
               actionsColumnIndex: -1,
-              exportButton: true
+              exportButton: true,
+              rowStyle: x => {
+                if (!(x.tableData.id % 2)) {
+                  return { backgroundColor: "#f2f2f2" }
+                }
+              },headerStyle: {
+                backgroundColor: '#536DFE',
+                color: '#FFF'
+              }
             }}
             columns={[
               { title: "Nome", field: "nome" },
-              { title: "Valor", field: "valor", type: "numeric", render:(rowData)=>(`R$ ${rowData.valor}`)}
+              { title: "Valor", field: "valor", type: "numeric", render: (rowData) => (`R$ ${rowData.valor}`) }
             ]}
             localization={{
+              header: {
+                actions: 'Ações'
+              },
               body: {
                 emptyDataSourceMessage: 'Nenhum registro para exibir'
               },
@@ -77,7 +88,7 @@ class PlanoList extends React.Component {
         )
       case 'EXCLUIR':
         return (
-          <PlanoForm buttonLabel='Excluir' onsubmit={this.props.excluir} readonly={true}/>
+          <PlanoForm buttonLabel='Excluir' onsubmit={this.props.excluir} readonly={true} />
         )
       default:
         return <div></div>

@@ -38,12 +38,24 @@ class ServidorList extends React.Component {
             ]}
             options={{
               actionsColumnIndex: -1,
-              exportButton: true
+              exportButton: true,
+              rowStyle: x => {
+                if (!(x.tableData.id % 2)) {
+                  return { backgroundColor: "#f2f2f2" }
+                }
+              },
+              headerStyle: {
+                backgroundColor: '#536DFE',
+                color: '#FFF'
+              }
             }}
             columns={[
               { title: "Nome", field: "nome" },
             ]}
             localization={{
+              header: {
+                actions: 'Ações'
+              },
               body: {
                 emptyDataSourceMessage: 'Nenhum registro para exibir'
               },

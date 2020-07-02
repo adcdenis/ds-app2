@@ -6,7 +6,7 @@ import MaterialTable from "material-table";
 import ClientForm from './clienteForm'
 import Button from '@material-ui/core/Button';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
-import {formatarFromJsonDiaMesAno} from '../../my_common/DateUtil'
+import { formatarFromJsonDiaMesAno } from '../../my_common/DateUtil'
 //import Fab from '@material-ui/core/Fab';
 //import AddIcon from '@material-ui/icons/Add';
 
@@ -44,20 +44,31 @@ class ClienteList extends React.Component {
             ]}
             options={{
               actionsColumnIndex: -1,
-              exportButton: true
+              exportButton: true,
+              rowStyle: x => {
+                if (!(x.tableData.id % 2)) {
+                  return { backgroundColor: "#f2f2f2" }
+                }
+              },headerStyle: {
+                backgroundColor: '#536DFE',
+                color: '#FFF'
+              }
             }}
             columns={[
               { title: "Nome", field: "nome" },
-              { title: "Vencimento", field: "vencimento", type: "date", render:(rowData)=>(formatarFromJsonDiaMesAno(rowData.vencimento)) },
+              { title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (formatarFromJsonDiaMesAno(rowData.vencimento)) },
               { title: "Telefone", field: "telefone", type: "numeric" }
             ]}
             localization={{
+              header: {
+                actions: 'Ações'
+              },
               body: {
                 emptyDataSourceMessage: 'Nenhum registro para exibir'
               },
               toolbar: {
                 searchTooltip: 'Pesquisar',
-                searchPlaceholder: 'Pesquisar'
+                searchPlaceholder: 'Pesquisar',
               },
               pagination: {
                 labelRowsSelect: 'linhas',
@@ -84,7 +95,7 @@ class ClienteList extends React.Component {
         )
       case 'EXCLUIR':
         return (
-          <ClientForm buttonLabel='Excluir' onsubmit={this.props.excluir} readonly={true}/>
+          <ClientForm buttonLabel='Excluir' onsubmit={this.props.excluir} readonly={true} />
         )
       default:
         return <div></div>

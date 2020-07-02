@@ -3,11 +3,11 @@ import { reduxForm, Field } from 'redux-form'
 import { init, cancelar } from './servidorAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { TextField } from 'redux-form-material-ui';
 import SaveIcon from '@material-ui/icons/Save';
 import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import Button from '@material-ui/core/Button';
 import If from '../../my_common/operador/if'
+import { renderTextField } from '../../my_common/MaterialUtil'
 
 const validate = values => {
   const errors = {}
@@ -36,9 +36,10 @@ class ServidorForm extends React.Component {
             disabled={this.props.readonly}
             label='Nome'
             hintText='Digite nome'
-            floatingLabelText="Nome (*)"
-            component={TextField}
+            floatingLabelText="Nome"
+            component={renderTextField}
             fullWidth
+            required
             style={{ marginRight: 20 }}
           />
         </div>

@@ -3,11 +3,12 @@ import { reduxForm, Field } from 'redux-form'
 import { init, cancelar } from './planoAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { TextField } from 'redux-form-material-ui';
 import SaveIcon from '@material-ui/icons/Save';
 import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import Button from '@material-ui/core/Button';
 import If from '../../my_common/operador/if'
+import { renderTextField } from '../../my_common/MaterialUtil'
+import Grid from '@material-ui/core/Grid'
 
 const validate = values => {
   const errors = {}
@@ -30,28 +31,38 @@ class PlanoForm extends React.Component {
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
-        <div>
-          <Field
-            name='nome'
-            disabled={this.props.readonly}
-            label='Nome'
-            hintText='Digite nome'
-            floatingLabelText="Nome (*)"
-            component={TextField}
-            fullWidth
-            style={{ marginRight: 20 }}
-          />
-        </div>
-        <Field
-            name='valor'
-            label='Valor'
-            type="number"
-            hintText='Digite valor'
-            floatingLabelText="Valor"
-            component={TextField}
-            disabled={this.props.readonly}
-            style={{ marginRight: 20 }}
-          />
+        <Grid
+          container
+          spacing={2}
+        >
+          <Grid item>
+            <Field
+              name='nome'
+              disabled={this.props.readonly}
+              label='Nome'
+              hintText='Digite nome'
+              floatingLabelText="Nome"
+              component={renderTextField}
+              fullWidth
+              required
+              style={{ marginRight: 20 }}
+              inputProps={{
+                maxlength: 20
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Field
+              name='valor'
+              label='Valor'
+              type="number"
+              hintText='Digite valor'
+              floatingLabelText="Valor"
+              component={renderTextField}
+              disabled={this.props.readonly}
+              style={{ marginRight: 20 }}
+            /></Grid>
+        </Grid>
         <br /><br />
         <If rendered={!this.props.readonly}>
           <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
@@ -64,7 +75,7 @@ class PlanoForm extends React.Component {
           </Button>
         </If>
         <Button variant="contained" onClick={() => this.props.cancelar()}
-        startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+          startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
           Cancelar
         </Button>
       </form >
