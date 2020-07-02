@@ -3,14 +3,14 @@ import { reduxForm, Field } from 'redux-form'
 import { init, cancelar } from './clienteAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { TextField, SelectField } from 'redux-form-material-ui';
 import SaveIcon from '@material-ui/icons/Save';
 import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import Button from '@material-ui/core/Button';
 import If from '../../my_common/operador/if'
-
 import { getList } from '../../my_pages/servidor/servidorAction'
+import { getList as getListPlano} from '../../my_pages/planos/planoAction'
 import MenuItem from 'material-ui/MenuItem'
+import { renderTextField, renderSelectField } from '../../my_common/MaterialUtil'
 
 /*import { makeStyles } from '@material-ui/core/styles';
 
@@ -19,23 +19,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));*/
-
-/*const renderInput = ({
-  label,
-  input,
-  meta: { touched, invalid, error },
-  ...custom
-}) => (
-    <TextField
-      label={label}
-      placeholder={label}
-      error={touched && invalid}
-      helperText={touched && error}
-      InputLabelProps={{ shrink: true }}
-      {...input}
-      {...custom}
-    />
-  )*/
 
 const validate = values => {
   const errors = {}
@@ -67,7 +50,7 @@ class ClienteForm extends React.Component {
 
   componentDidMount() {
     this.props.getList()
-
+    this.props.getListPlano()
   }
   render() {
     //const classes = useStyles();
@@ -81,30 +64,42 @@ class ClienteForm extends React.Component {
             disabled={this.props.readonly}
             label='Nome'
             hintText='Digite seu nome'
-            floatingLabelText="Nome (*)"
-            component={TextField}
+            floatingLabelText="Nome"
+            component={renderTextField}
             fullWidth
+            required
+            inputProps={{
+              maxlength: 50
+            }}
             style={{ marginRight: 20 }}
           />
         </div>
+        <br />
         <div>
           <Field
             name='usuario'
-            label='Usuário (*)'
-            floatingLabelText="Usuário (*)"
+            label='Usuário'
+            floatingLabelText="Usuário"
             hintText='Digite seu usuário'
-            component={TextField}
+            component={renderTextField}
             disabled={this.props.readonly}
             style={{ marginRight: 20 }}
+            required
+            inputProps={{
+              maxlength: 20
+            }}
           />
           <Field
             name='email'
             label='Email'
             hintText='Digite seu e-mail'
             floatingLabelText="E-Mail"
-            component={TextField}
+            component={renderTextField}
             disabled={this.props.readonly}
             style={{ marginRight: 20 }}
+            inputProps={{
+              maxlength: 50
+            }}
           />
         </div>
         <br />
@@ -112,10 +107,12 @@ class ClienteForm extends React.Component {
           <Field
             name='vencimento'
             label='Vencimento'
-            floatingLabelText="Vencimento (*)"
-            component={TextField}
+            floatingLabelText="Vencimento"
+            component={renderTextField}
             type='date'
             disabled={this.props.readonly}
+            required
+            InputLabelProps={{ shrink: true }}
             style={{ marginRight: 20 }}
           />
           <Field
@@ -124,11 +121,43 @@ class ClienteForm extends React.Component {
             type="number"
             hintText='Digite seu telefone'
             floatingLabelText="Telefone"
-            component={TextField}
+            component={renderTextField}
             disabled={this.props.readonly}
             style={{ marginRight: 20 }}
+            inputProps={{
+              maxlength: 12
+            }}
           />
         </div>
+        <Field
+          name="servidor"
+          label="servidor"
+          component={renderSelectField}
+          hintText="Servidor"
+          floatingLabelText="Servidor"
+          disabled={this.props.readonly}
+        >
+          {this.props.listaServidor.map((servidor, i) => {
+            return (
+              <MenuItem key={i} value={servidor._id} primaryText={servidor.nome} />
+            )
+          })}
+        </Field>
+        <Field
+          name="plano"
+          label="plano"
+          component={renderSelectField}
+          hintText="Plano"
+          floatingLabelText="Plano"
+          style={{ marginLeft: 20 }}
+          disabled={this.props.readonly}
+        >
+          {this.props.listaPlano.map((plano, i) => {
+            return (
+              <MenuItem key={i} value={plano._id} primaryText={plano.nome} />
+            )
+          })}
+        </Field>
         <br />
         <div>
           <Field
@@ -136,25 +165,17 @@ class ClienteForm extends React.Component {
             label='Observação'
             hintText='Digite observações'
             floatingLabelText="Observação"
-            component={TextField}
+            component={renderTextField
+            }
             fullWidth
             multiline="true"
             disabled={this.props.readonly}
             style={{ marginRight: 20, marginTop: 5 }}
+            inputProps={{
+              maxlength: 500
+            }}
           />
         </div>
-        <Field
-          name="servidor"
-          component={SelectField}
-          hintText="Servidor"
-          floatingLabelText="Servidor"
-        >
-          {this.props.listaServidor.map((servidor, i) => {
-            return (
-              <MenuItem id={i} value={servidor._id} primaryText={servidor.nome} />
-            )
-          })}
-        </Field>
         <br /><br />
         <If rendered={!this.props.readonly}>
           <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
@@ -177,7 +198,7 @@ class ClienteForm extends React.Component {
 
 //const selector = formValueSelector('ClienteForm')
 //const mapStateToProps = state => ({credits: selector(state, 'credits'), debts: selector(state, 'debts') })
-const mapStateToProps = state => ({ listaServidor: state.servidor.list })
+const mapStateToProps = state => ({ listaServidor: state.servidor.list, listaPlano: state.plano.list })
 ClienteForm = reduxForm({ form: 'ClienteForm', validate, destroyOnUnmount: false })(ClienteForm)
-const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar, getList }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar, getList, getListPlano }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(ClienteForm);
