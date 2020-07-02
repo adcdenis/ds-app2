@@ -1,26 +1,41 @@
-const Cliente = require("./cliente")
+const Cliente = require('./cliente')
 const errorHandler = require('../../common/errorHandler')
 
-Cliente.methods(["get", "post", "put", "delete"])
+Cliente.methods(['get', 'post', 'put', 'delete'])
 Cliente.updateOptions({
   new: true,
-  runValidators: true
+  runValidators: true,
 })
 
 Cliente.after('post', errorHandler).after('put', errorHandler)
 
-Cliente.route("count", (req, res, next) => {
+Cliente.route('count', (req, res, next) => {
   Cliente.count((error, value) => {
     if (error) {
       res.status(500).json({
-        errors: [error]
+        errors: [error],
       })
     } else {
       res.json({
-        value
+        value,
       })
     }
   })
+})
+
+Cliente.route('getPopulate', (req, res, next) => {
+  Cliente.find()
+    .populate('servidor')
+    .populate('plano')
+    .exec((error, result) => {
+      if (error) {
+        res.status(500).json({ errors: [error] })
+      } else {
+        res.json({
+          result,
+        })
+      }
+    })
 })
 
 /*Cliente.route('summary', (req, res, next) => {

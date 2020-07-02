@@ -56,6 +56,7 @@ class PlanoForm extends React.Component {
               name='valor'
               label='Valor'
               type="number"
+              required
               hintText='Digite valor'
               floatingLabelText="Valor"
               component={renderTextField}
