@@ -48,8 +48,8 @@ class PlanoList extends React.Component {
               }
             }}
             columns={[
-              { title: "Nome", field: "nome" },
-              { title: "Valor", field: "valor", type: "numeric", render: (rowData) => (`R$ ${rowData.valor}`) }
+              { title: "Nome", field: "nome", width: '50%' },
+              { title: "Valor", field: "valor", render: (rowData) => (`R$ ${rowData.valor}`), width: '50%' }
             ]}
             localization={{
               header: {

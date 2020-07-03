@@ -54,11 +54,11 @@ class ClienteList extends React.Component {
               }
             }}
             columns={[
-              { title: "Nome", field: "nome" },
-              { title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (formatarFromJsonDiaMesAno(rowData.vencimento)) },
-              { title: "Telefone", field: "telefone", type: "numeric" },
-              { title: "Servidor", field: "servidor.nome" },
-              { title: "Plano", field: "plano.nome" },
+              { title: "Nome", field: "nome", width: '50%' },
+              { title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (formatarFromJsonDiaMesAno(rowData.vencimento)), width: '10%' },
+              { title: "Telefone", field: "telefone", width: '10%' },
+              { title: "Servidor", field: "servidor.nome", width: '15%' },
+              { title: "Plano", field: "plano.nome", width: '15%' },
             ]}
             localization={{
               header: {
