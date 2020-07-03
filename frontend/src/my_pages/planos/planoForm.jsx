@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector  } from 'redux-form'
 import { init, cancelar } from './planoAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -29,6 +29,7 @@ class PlanoForm extends React.Component {
 
   render() {
     const { handleSubmit } = this.props
+    console.log(this.props.plano)
     return (
       <form onSubmit={handleSubmit}>
         <Grid
@@ -62,6 +63,9 @@ class PlanoForm extends React.Component {
               component={renderTextField}
               disabled={this.props.readonly}
               style={{ marginRight: 20 }}
+              inputProps={{
+                maxlength: 20
+              }}
             /></Grid>
         </Grid>
         <br /><br />
@@ -71,7 +75,7 @@ class PlanoForm extends React.Component {
           </Button>
         </If>
         <If rendered={this.props.readonly}>
-          <Button onClick={this.props.onsubmit} color="primary" variant="contained" startIcon={<SaveIcon />} >
+          <Button onClick={() => this.props.onsubmit(this.props.plano)} color="primary" variant="contained" startIcon={<SaveIcon />} >
             {this.props.buttonLabel}
           </Button>
         </If>
@@ -84,7 +88,10 @@ class PlanoForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const selector = formValueSelector('PlanoForm')
+const mapStateToProps = state => ({plano: selector(state, '_id','nome') })
+
+//const mapStateToProps = state => ({})
 PlanoForm = reduxForm({ form: 'PlanoForm', validate, destroyOnUnmount: false })(PlanoForm)
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(PlanoForm);

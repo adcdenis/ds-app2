@@ -9,7 +9,7 @@ import {formatarFromJsonAnoMesDia, formatarFromDate} from '../../my_common/DateU
 const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) }
 
 export function getList() {
-  const request = axios.get(`${Consts.API_URL}/clientes`)
+  const request = axios.get(`${Consts.API_URL}/clientes/populate`)
   return {
     type: 'LISTAR_CLIENTES',
     payload: request,

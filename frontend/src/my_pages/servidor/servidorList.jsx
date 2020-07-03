@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { getList, show, create, excluir, update } from './servidorAction'
 import MaterialTable from "material-table";
 import ServidorForm from './servidorForm'
-import Button from '@material-ui/core/Button';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 
 class ServidorList extends React.Component {
@@ -30,7 +29,7 @@ class ServidorList extends React.Component {
                 onClick: (event, rowData) => this.props.show(rowData, 'EXCLUIR')
               },
               {
-                icon: () => <Button variant="contained" color="primary" startIcon={<AddBoxOutlinedIcon onClick={() => this.props.show()} />}>Novo</Button>,
+                icon: () => <AddBoxOutlinedIcon/>,
                 tooltip: 'Adicionar',
                 isFreeAction: true,
                 onClick: () => this.props.show()

@@ -23,7 +23,7 @@ Cliente.route('count', (req, res, next) => {
   })
 })
 
-Cliente.route('getPopulate', (req, res, next) => {
+Cliente.route('populate', (req, res, next) => {
   Cliente.find()
     .populate('servidor')
     .populate('plano')

@@ -7,7 +7,7 @@ export default (state = INITIAL_STATE, action) => {
     case 'LISTAR_CLIENTES':
       return {
         ...state,
-        list: action.payload.data,
+        list: action.payload.data.result,
       }
     case 'HABILITAR_FORM_CLIENTE':
       return {

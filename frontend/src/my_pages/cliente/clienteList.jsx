@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { getList, showCliente, create, excluir, update } from './clienteAction'
 import MaterialTable from "material-table";
 import ClientForm from './clienteForm'
-import Button from '@material-ui/core/Button';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import { formatarFromJsonDiaMesAno } from '../../my_common/DateUtil'
 //import Fab from '@material-ui/core/Fab';
@@ -36,7 +35,7 @@ class ClienteList extends React.Component {
                 onClick: (event, rowData) => this.props.showCliente(rowData, 'EXCLUIR')
               },
               {
-                icon: () => <Button variant="contained" color="primary" startIcon={<AddBoxOutlinedIcon onClick={() => this.props.showCliente()} />}>Novo</Button>,
+                icon: () => <AddBoxOutlinedIcon/>,
                 tooltip: 'Adicionar',
                 isFreeAction: true,
                 onClick: () => this.props.showCliente()
@@ -57,7 +56,9 @@ class ClienteList extends React.Component {
             columns={[
               { title: "Nome", field: "nome" },
               { title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (formatarFromJsonDiaMesAno(rowData.vencimento)) },
-              { title: "Telefone", field: "telefone", type: "numeric" }
+              { title: "Telefone", field: "telefone", type: "numeric" },
+              { title: "Servidor", field: "servidor.nome" },
+              { title: "Plano", field: "plano.nome" },
             ]}
             localization={{
               header: {

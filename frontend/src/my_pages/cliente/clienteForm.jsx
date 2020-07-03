@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { init, cancelar } from './clienteAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -130,7 +130,7 @@ class ClienteForm extends React.Component {
           />
         </div>
         <Field
-          name="servidor"
+          name="servidor._id"
           label="servidor"
           component={renderSelectField}
           hintText="Servidor"
@@ -139,12 +139,12 @@ class ClienteForm extends React.Component {
         >
           {this.props.listaServidor.map((servidor, i) => {
             return (
-              <MenuItem key={i} value={servidor._id} primaryText={servidor.nome} />
+              <MenuItem key={servidor._id} value={servidor._id} primaryText={servidor.nome} />
             )
           })}
         </Field>
         <Field
-          name="plano"
+          name="plano._id"
           label="plano"
           component={renderSelectField}
           hintText="Plano"
@@ -152,9 +152,9 @@ class ClienteForm extends React.Component {
           style={{ marginLeft: 20 }}
           disabled={this.props.readonly}
         >
-          {this.props.listaPlano.map((plano, i) => {
+          {this.props.listaPlano.map((elem, i) => {
             return (
-              <MenuItem key={i} value={plano._id} primaryText={plano.nome} />
+              <MenuItem key={elem._id} value={elem._id} primaryText={elem.nome} />
             )
           })}
         </Field>
@@ -183,7 +183,7 @@ class ClienteForm extends React.Component {
           </Button>
         </If>
         <If rendered={this.props.readonly}>
-          <Button onClick={this.props.onsubmit} color="primary" variant="contained" startIcon={<SaveIcon />} >
+          <Button onClick={() => this.props.onsubmit(this.props.cliente)} color="primary" variant="contained" startIcon={<SaveIcon />} >
             {this.props.buttonLabel}
           </Button>
         </If>
@@ -196,9 +196,8 @@ class ClienteForm extends React.Component {
   }
 }
 
-//const selector = formValueSelector('ClienteForm')
-//const mapStateToProps = state => ({credits: selector(state, 'credits'), debts: selector(state, 'debts') })
-const mapStateToProps = state => ({ listaServidor: state.servidor.list, listaPlano: state.plano.list })
+const selector = formValueSelector('ClienteForm')
+const mapStateToProps = state => ({ cliente: selector(state, '_id','nome') , listaServidor: state.servidor.list, listaPlano: state.plano.list })
 ClienteForm = reduxForm({ form: 'ClienteForm', validate, destroyOnUnmount: false })(ClienteForm)
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar, getList, getListPlano }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(ClienteForm);

@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { init, cancelar } from './servidorAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -50,7 +50,7 @@ class ServidorForm extends React.Component {
           </Button>
         </If>
         <If rendered={this.props.readonly}>
-          <Button onClick={this.props.onsubmit} color="primary" variant="contained" startIcon={<SaveIcon />} >
+          <Button onClick={() => this.props.onsubmit(this.props.servidor)} color="primary" variant="contained" startIcon={<SaveIcon />} >
             {this.props.buttonLabel}
           </Button>
         </If>
@@ -63,7 +63,9 @@ class ServidorForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const selector = formValueSelector('ServidorForm')
+const mapStateToProps = state => ({servidor: selector(state, '_id','nome') })
+
 ServidorForm = reduxForm({ form: 'ServidorForm', validate, destroyOnUnmount: false })(ServidorForm)
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(ServidorForm);
