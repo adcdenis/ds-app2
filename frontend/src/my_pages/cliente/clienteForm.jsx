@@ -62,128 +62,113 @@ class ClienteForm extends React.Component {
         <Grid
           container
           spacing={2}
+          alignItems="flex-start"
+          justify='flex-start'
+          direction="row"
         >
-          <Grid
-            container
-            spacing={2}
-          >
-            <Grid item>
-              <Field
-                name='nome'
-                disabled={this.props.readonly}
-                label='Nome'
-                helperText='Digite seu nome'
-                component={renderTextField}
-                fullWidth
-                required
-                autoFocus
-                inputProps={{
-                  maxLength: 50
-                }}
-              /></Grid>
-            <Grid item>
-              <Field
-                name='usuario'
-                label='Usuário'
-                component={renderTextField}
-                disabled={this.props.readonly}
-                required
-                inputProps={{
-                  maxLength: 20
-                }}
-              />
-            </Grid>
+          <Grid item xs='12'>
+            <Field
+              name='nome'
+              disabled={this.props.readonly}
+              label='Nome'
+              helperText='Digite seu nome'
+              component={renderTextField}
+              fullWidth
+              required
+              autoFocus
+              inputProps={{
+                maxLength: 50
+              }}
+            />
           </Grid>
-          <Grid
-            container
-            spacing={2}
-          >
-            <Grid item>
-              <Field
-                name='email'
-                label='Email'
-                component={renderTextField}
-                disabled={this.props.readonly}
-                inputProps={{
-                  maxLength: 50
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <Field
-                name='vencimento'
-                label='Vencimento'
-                component={renderTextField}
-                type='date'
-                disabled={this.props.readonly}
-                required
-                InputLabelProps={{ shrink: true }}
-              />
-            </Grid>
-            <Grid item>
-              <Field
-                name='telefone'
-                label='Telefone'
-                type="number"
-                component={renderTextField}
-                disabled={this.props.readonly}
-                inputProps={{
-                  maxLength: 12
-                }}
-              />
-            </Grid>
+          <Grid item xs='12'>
+            <Field
+              name='usuario'
+              label='Usuário'
+              component={renderTextField}
+              disabled={this.props.readonly}
+              required
+              inputProps={{
+                maxLength: 20
+              }}
+            />
           </Grid>
-          <Grid
-            container
-            spacing={2}
-          >
-            <Grid item>
-              <Field
-                name="servidor._id"
-                label="servidor"
-                component={renderSelectField}
-                disabled={this.props.readonly}
-              >
-                {this.props.listaServidor.map((servidor, i) => {
-                  return (
-                    <MenuItem key={servidor._id} value={servidor._id} primaryText={servidor.nome} />
-                  )
-                })}
-              </Field></Grid>
-
-            <Grid item>
-              <Field
-                name="plano._id"
-                label="plano"
-                component={renderSelectField}
-                disabled={this.props.readonly}
-              >
-                {this.props.listaPlano.map((elem, i) => {
-                  return (
-                    <MenuItem key={elem._id} value={elem._id} primaryText={elem.nome} />
-                  )
-                })}
-              </Field></Grid>
+          <Grid item xs='6'>
+            <Field
+              name='email'
+              label='Email'
+              component={renderTextField}
+              disabled={this.props.readonly}
+              inputProps={{
+                maxLength: 50
+              }}
+            />
           </Grid>
-          <Grid
-            container
-            spacing={2}
-          >
-            <Grid item>
-              <Field
-                name='observacao'
-                label='Observação'
-                component={renderTextField
-                }
-                fullWidth
-                multiline
-                disabled={this.props.readonly}
-                inputProps={{
-                  maxLength: 500
-                }}
-              />
-            </Grid>
+          <Grid item xs='6'>
+            <Field
+              name='vencimento'
+              label='Vencimento'
+              component={renderTextField}
+              type='date'
+              disabled={this.props.readonly}
+              required
+              InputLabelProps={{ shrink: true }}
+            />
           </Grid>
+          <Grid item xs='12'>
+            <Field
+              name='telefone'
+              label='Telefone'
+              type="number"
+              component={renderTextField}
+              disabled={this.props.readonly}
+              inputProps={{
+                maxLength: 12
+              }}
+            />
+          </Grid>
+          <Grid item xs='6'>
+            <Field
+              name="servidor._id"
+              label="servidor"
+              component={renderSelectField}
+              disabled={this.props.readonly}
+            >
+              {this.props.listaServidor.map((servidor, i) => {
+                return (
+                  <MenuItem key={servidor._id} value={servidor._id} primaryText={servidor.nome} />
+                )
+              })}
+            </Field>
+          </Grid>
+          <Grid item xs='6'>
+            <Field
+              name="plano._id"
+              label="plano"
+              component={renderSelectField}
+              disabled={this.props.readonly}
+            >
+              {this.props.listaPlano.map((elem, i) => {
+                return (
+                  <MenuItem key={elem._id} value={elem._id} primaryText={elem.nome} />
+                )
+              })}
+            </Field>
+          </Grid>
+        </Grid>
+        <Grid item xs='12'>
+          <Field
+            name='observacao'
+            label='Observação'
+            component={renderTextField
+            }
+            fullWidth
+            multiline
+            disabled={this.props.readonly}
+            inputProps={{
+              maxLength: 500
+            }}
+          />
         </Grid>
         <br /><br />
         <Grid
