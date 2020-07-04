@@ -81,7 +81,7 @@ class ClienteForm extends React.Component {
               }}
             />
           </Grid>
-          <Grid item xs='12'>
+          <Grid item xs='6'>
             <Field
               name='usuario'
               label='Usuário'
@@ -115,7 +115,7 @@ class ClienteForm extends React.Component {
               InputLabelProps={{ shrink: true }}
             />
           </Grid>
-          <Grid item xs='12'>
+          <Grid item xs='6'>
             <Field
               name='telefone'
               label='Telefone'
