@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field, formValueSelector  } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { init, cancelar } from './planoAction'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -41,11 +41,10 @@ class PlanoForm extends React.Component {
               name='nome'
               disabled={this.props.readonly}
               label='Nome'
-              hintText='Digite nome'
-              floatingLabelText="Nome"
               component={renderTextField}
               fullWidth
               required
+              autoFocus
               style={{ marginRight: 20 }}
               inputProps={{
                 maxlength: 20
@@ -58,8 +57,6 @@ class PlanoForm extends React.Component {
               label='Valor'
               type="number"
               required
-              hintText='Digite valor'
-              floatingLabelText="Valor"
               component={renderTextField}
               disabled={this.props.readonly}
               style={{ marginRight: 20 }}
@@ -69,27 +66,37 @@ class PlanoForm extends React.Component {
             /></Grid>
         </Grid>
         <br /><br />
-        <If rendered={!this.props.readonly}>
-          <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
-            {this.props.buttonLabel}
-          </Button>
-        </If>
-        <If rendered={this.props.readonly}>
-          <Button onClick={() => this.props.onsubmit(this.props.plano)} color="primary" variant="contained" startIcon={<SaveIcon />} >
-            {this.props.buttonLabel}
-          </Button>
-        </If>
-        <Button variant="contained" onClick={() => this.props.cancelar()}
-          startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
-          Cancelar
+        <Grid
+          container
+          spacing={2}
+          justify="center"
+        >
+          <Grid item>
+            <If rendered={!this.props.readonly}>
+              <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
+                {this.props.buttonLabel}
+              </Button>
+            </If>
+            <If rendered={this.props.readonly}>
+              <Button onClick={() => this.props.onsubmit(this.props.plano)} color="primary" variant="contained" startIcon={<SaveIcon />} >
+                {this.props.buttonLabel}
+              </Button>
+            </If>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" onClick={() => this.props.cancelar()}
+              startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+              Cancelar
         </Button>
+          </Grid>
+        </Grid>
       </form >
     )
   }
 }
 
 const selector = formValueSelector('PlanoForm')
-const mapStateToProps = state => ({plano: selector(state, '_id','nome') })
+const mapStateToProps = state => ({ plano: selector(state, '_id', 'nome') })
 
 //const mapStateToProps = state => ({})
 PlanoForm = reduxForm({ form: 'PlanoForm', validate, destroyOnUnmount: false })(PlanoForm)

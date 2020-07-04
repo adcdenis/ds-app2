@@ -8,6 +8,7 @@ import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import Button from '@material-ui/core/Button';
 import If from '../../my_common/operador/if'
 import { renderTextField } from '../../my_common/MaterialUtil'
+import Grid from '@material-ui/core/Grid'
 
 const validate = values => {
   const errors = {}
@@ -30,41 +31,48 @@ class ServidorForm extends React.Component {
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
-        <div>
-          <Field
-            name='nome'
-            disabled={this.props.readonly}
-            label='Nome'
-            hintText='Digite nome'
-            floatingLabelText="Nome"
-            component={renderTextField}
-            fullWidth
-            required
-            style={{ marginRight: 20 }}
-          />
-        </div>
+        <Field
+          name='nome'
+          disabled={this.props.readonly}
+          label='Nome'
+          component={renderTextField}
+          fullWidth
+          autoFocus
+          required
+          style={{ marginRight: 20 }}
+        />
         <br /><br />
-        <If rendered={!this.props.readonly}>
-          <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
-            {this.props.buttonLabel}
-          </Button>
-        </If>
-        <If rendered={this.props.readonly}>
-          <Button onClick={() => this.props.onsubmit(this.props.servidor)} color="primary" variant="contained" startIcon={<SaveIcon />} >
-            {this.props.buttonLabel}
-          </Button>
-        </If>
-        <Button variant="contained" onClick={() => this.props.cancelar()}
-        startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
-          Cancelar
+        <Grid
+          container
+          spacing={2}
+          justify="center"
+        >
+          <Grid item>
+            <If rendered={!this.props.readonly}>
+              <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
+                {this.props.buttonLabel}
+              </Button>
+            </If>
+            <If rendered={this.props.readonly}>
+              <Button onClick={() => this.props.onsubmit(this.props.servidor)} color="primary" variant="contained" startIcon={<SaveIcon />} >
+                {this.props.buttonLabel}
+              </Button>
+            </If>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" onClick={() => this.props.cancelar()}
+              startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+              Cancelar
         </Button>
+          </Grid>
+        </Grid>
       </form >
     )
   }
 }
 
 const selector = formValueSelector('ServidorForm')
-const mapStateToProps = state => ({servidor: selector(state, '_id','nome') })
+const mapStateToProps = state => ({ servidor: selector(state, '_id', 'nome') })
 
 ServidorForm = reduxForm({ form: 'ServidorForm', validate, destroyOnUnmount: false })(ServidorForm)
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init, cancelar }, dispatch)

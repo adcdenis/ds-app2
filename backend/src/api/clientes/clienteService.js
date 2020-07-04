@@ -23,10 +23,22 @@ Cliente.route('count', (req, res, next) => {
   })
 })
 
+
 Cliente.route('populate', (req, res, next) => {
-  Cliente.find()
+  let data = new Date();
+  data.setUTCHours(0)
+  data.setMinutes(0)
+  data.setSeconds(0)
+  data.setMilliseconds(0)
+  data.setDate(data.getDate() - req.query.days);
+  //console.log(data)
+  //console.log(req.query.days)
+  const days = req.query.days ? { vencimento: { $gte: data }} : {}
+  //console.log(days)
+  Cliente.find(days)
     .populate('servidor')
     .populate('plano')
+    .sort( { vencimento: -1 })
     .exec((error, result) => {
       if (error) {
         res.status(500).json({ errors: [error] })

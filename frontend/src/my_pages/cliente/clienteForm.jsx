@@ -72,26 +72,24 @@ class ClienteForm extends React.Component {
                 name='nome'
                 disabled={this.props.readonly}
                 label='Nome'
-                hintText='Digite seu nome'
-                floatingLabelText="Nome"
+                helperText='Digite seu nome'
                 component={renderTextField}
                 fullWidth
                 required
+                autoFocus
                 inputProps={{
-                  maxlength: 50
+                  maxLength: 50
                 }}
               /></Grid>
             <Grid item>
               <Field
                 name='usuario'
                 label='Usuário'
-                floatingLabelText="Usuário"
-                hintText='Digite seu usuário'
                 component={renderTextField}
                 disabled={this.props.readonly}
                 required
                 inputProps={{
-                  maxlength: 20
+                  maxLength: 20
                 }}
               />
             </Grid>
@@ -104,12 +102,10 @@ class ClienteForm extends React.Component {
               <Field
                 name='email'
                 label='Email'
-                hintText='Digite seu e-mail'
-                floatingLabelText="E-Mail"
                 component={renderTextField}
                 disabled={this.props.readonly}
                 inputProps={{
-                  maxlength: 50
+                  maxLength: 50
                 }}
               />
             </Grid>
@@ -117,7 +113,6 @@ class ClienteForm extends React.Component {
               <Field
                 name='vencimento'
                 label='Vencimento'
-                floatingLabelText="Vencimento"
                 component={renderTextField}
                 type='date'
                 disabled={this.props.readonly}
@@ -130,12 +125,10 @@ class ClienteForm extends React.Component {
                 name='telefone'
                 label='Telefone'
                 type="number"
-                hintText='Digite seu telefone'
-                floatingLabelText="Telefone"
                 component={renderTextField}
                 disabled={this.props.readonly}
                 inputProps={{
-                  maxlength: 12
+                  maxLength: 12
                 }}
               />
             </Grid>
@@ -149,8 +142,6 @@ class ClienteForm extends React.Component {
                 name="servidor._id"
                 label="servidor"
                 component={renderSelectField}
-                hintText="Servidor"
-                floatingLabelText="Servidor"
                 disabled={this.props.readonly}
               >
                 {this.props.listaServidor.map((servidor, i) => {
@@ -165,8 +156,6 @@ class ClienteForm extends React.Component {
                 name="plano._id"
                 label="plano"
                 component={renderSelectField}
-                hintText="Plano"
-                floatingLabelText="Plano"
                 disabled={this.props.readonly}
               >
                 {this.props.listaPlano.map((elem, i) => {
@@ -184,15 +173,13 @@ class ClienteForm extends React.Component {
               <Field
                 name='observacao'
                 label='Observação'
-                hintText='Digite observações'
-                floatingLabelText="Observação"
                 component={renderTextField
                 }
                 fullWidth
-                multiline="true"
+                multiline
                 disabled={this.props.readonly}
                 inputProps={{
-                  maxlength: 500
+                  maxLength: 500
                 }}
               />
             </Grid>
