@@ -17,3 +17,11 @@ export const formatarFromJsonDiaMesAno = data => {
   let result = soData.split('-')
   return `${result[2]}/${result[1]}/${result[0]}`
 }
+
+export const formatarFromDateDiaMesAno = data => {
+  const ano = data.getFullYear();
+  const mes = `00${data.getMonth() + 1}`.slice(-2);
+  const dia = `00${data.getDate()}`.slice(-2);
+  return `${dia}/${mes}/${ano}`;
+}
+

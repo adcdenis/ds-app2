@@ -6,12 +6,8 @@ import MaterialTable from "material-table";
 import ClientForm from './clienteForm'
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import { formatarFromJsonDiaMesAno } from '../../my_common/DateUtil'
-//import Fab from '@material-ui/core/Fab';
-//import AddIcon from '@material-ui/icons/Add';
+import WhatsCall from './whatsAppCall'
 
-/*<Fab color="primary" aria-label="add">
-<AddIcon />
-</Fab>*/
 class ClienteList extends React.Component {
   componentDidMount() {
     this.props.getList()
@@ -56,7 +52,7 @@ class ClienteList extends React.Component {
             columns={[
               { title: "Nome", field: "nome", width: '50%' },
               { title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (formatarFromJsonDiaMesAno(rowData.vencimento)), width: '10%' },
-              { title: "Telefone", field: "telefone", width: '10%' },
+              { title: "Alerta", field: "telefone", width: '10%', render: (rowData) => (<WhatsCall cliente={rowData}/>) },
               { title: "Servidor", field: "servidor.nome", width: '15%' },
               { title: "Plano", field: "plano.nome", width: '15%' },
             ]}
