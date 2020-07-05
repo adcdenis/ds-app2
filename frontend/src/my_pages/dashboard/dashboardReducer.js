@@ -8,6 +8,12 @@ const INITIAL_STATE = {
   totalPlanos: {
     value: 0,
   },
+  totalAVencer: {
+    value: 0,
+  },
+  totalVencidos: {
+    value: 0,
+  },
 };
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -26,6 +32,16 @@ export default function(state = INITIAL_STATE, action) {
         ...state,
         totalPlanos: action.payload.data,
       };
+    case "TOTAL_A_VENCER":
+      return {
+        ...state,
+        totalAVencer: action.payload.data,
+      };
+   case "TOTAL_VENCIDOS":
+        return {
+          ...state,
+          totalVencidos: action.payload.data,
+        };
     default:
       return state;
   }

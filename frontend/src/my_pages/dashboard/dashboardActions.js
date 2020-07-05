@@ -24,3 +24,19 @@ export function getCountPlanos() {
     payload: request,
   }
 }
+
+export function getCountAVencer(days) {
+  const request = axios.get(`${Consts.API_URL}/clientes/count_vencer?days=${days}`)
+  return {
+    type: 'TOTAL_A_VENCER',
+    payload: request,
+  }
+}
+
+export function getCountVencidos(days) {
+  const request = axios.get(`${Consts.API_URL}/clientes/count_vencer`)
+  return {
+    type: 'TOTAL_VENCIDOS',
+    payload: request,
+  }
+}

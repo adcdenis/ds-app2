@@ -3,7 +3,7 @@ import React from "react"
 //import Row from "../../my_common/form/row"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { getCount, getCountServidores, getCountPlanos } from './dashboardActions'
+import { getCount, getCountServidores, getCountPlanos, getCountAVencer, getCountVencidos} from './dashboardActions'
 import BoxGrid from '../../my_common/widget/BoxGrid'
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import Grid from '@material-ui/core/Grid'
@@ -15,10 +15,12 @@ class Dashboard extends React.Component {
     this.props.getCount()
     this.props.getCountPlanos()
     this.props.getCountServidores()
+    this.props.getCountAVencer(3)
+    this.props.getCountVencidos()
   }
 
   render() {
-
+    const { totalAVencer, totalClientes, totalServidores, totalPlanos, totalVencidos } = this.props.totais
     return (
       <>
         <PageTitle title="DashBoard" />
@@ -28,22 +30,37 @@ class Dashboard extends React.Component {
         >
           <Grid item>
             <BoxGrid
+              label='Total Planos a Vencer'
+              value={totalAVencer.value}
+              icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
+            />
+          </Grid>
+          <Grid item>
+            <BoxGrid
+              label='Total Vencidos'
+              value={totalVencidos.value}
+              icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
+            />
+          </Grid>
+
+          <Grid item>
+            <BoxGrid
               label='Total de Clientes'
-              value={this.props.totalClientes.value}
+              value={totalClientes.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
           <Grid item>
             <BoxGrid
               label='Total de Servidores'
-              value={this.props.totalServidores.value}
+              value={totalServidores.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
           <Grid item>
             <BoxGrid
               label='Total de Planos'
-              value={this.props.totalPlanos.value}
+              value={totalPlanos.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
@@ -54,6 +71,6 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ totalClientes: state.dashboard.totalClientes, totalServidores: state.dashboard.totalServidores, totalPlanos: state.dashboard.totalPlanos })
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getCount, getCountServidores, getCountPlanos }, dispatch)
+const mapStateToProps = (state) => ({ totais: state.dashboard })
+const mapDispatchToProps = (dispatch) => bindActionCreators({getCountVencidos, getCount, getCountServidores, getCountPlanos, getCountAVencer }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
