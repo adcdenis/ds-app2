@@ -10,7 +10,7 @@ import WhatsCall from './whatsAppCall'
 
 class ClienteList extends React.Component {
   componentDidMount() {
-    this.props.getList()
+    this.props.getList(this.props.tipoTela)
   }
 
   render() {
@@ -100,7 +100,7 @@ class ClienteList extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ list: state.cliente.list, action: state.cliente.action })
+const mapStateToProps = (state) => ({ tipoTela: state.cliente.tipoTela, list: state.cliente.list, action: state.cliente.action })
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, showCliente, create, update, excluir }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(ClienteList)

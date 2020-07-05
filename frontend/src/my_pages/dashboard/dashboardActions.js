@@ -2,7 +2,7 @@ import axios from 'axios'
 import Consts from '../../my_common/consts'
 
 export function getCount() {
-  const request = axios.get(`${Consts.API_URL}/clientes/count`)
+  const request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?count=true`)
   return {
     type: 'TOTAL_CLIENTES',
     payload: request,
@@ -26,7 +26,7 @@ export function getCountPlanos() {
 }
 
 export function getCountAVencer(days) {
-  const request = axios.get(`${Consts.API_URL}/clientes/count_vencer?days=${days}`)
+  const request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=${days}&count=true`)
   return {
     type: 'TOTAL_A_VENCER',
     payload: request,
@@ -34,7 +34,7 @@ export function getCountAVencer(days) {
 }
 
 export function getCountVencidos(days) {
-  const request = axios.get(`${Consts.API_URL}/clientes/count_vencer`)
+  const request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=0&count=true`)
   return {
     type: 'TOTAL_VENCIDOS',
     payload: request,

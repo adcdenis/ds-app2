@@ -25,6 +25,7 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import Clientes from '../../my_pages/cliente/cliente'
+import Clientes2 from '../../my_pages/cliente/cliente'
 import DashboardMy from "../../my_pages/dashboard/dashboard"
 import Servidores from '../../my_pages/servidor/servidor'
 import Planos from '../../my_pages/planos/plano'
@@ -51,7 +52,12 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/app/dashboard" component={DashboardMy} />
-              <Route path="/app/clientes" component={Clientes} />
+              <Route path="/app/clientes" component={Clientes} >
+              <Clientes tela={1} key="1"/>
+              </Route>
+              <Route path="/app/clientes-vencer" >
+                <Clientes2 tela={2} titulo="Clientes a Vencer" key="2"/>
+              </Route>
               <Route path="/app/servidores" component={Servidores} />
               <Route path="/app/planos" component={Planos} />
               <Route path="/app/typography" component={Typography} />

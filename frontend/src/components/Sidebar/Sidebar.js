@@ -42,12 +42,18 @@ const structure = [
   },
   {
     id: 2,
+    label: "Clientes A Vencer",
+    link: "/app/clientes-vencer",
+    icon: <PeopleIcon />,
+  },
+  {
+    id: 3,
     label: "Servidores",
     link: "/app/servidores",
     icon: <ComputerIcon />,
   },
   {
-    id: 3,
+    id: 4,
     label: "Planos",
     link: "/app/planos",
     icon: <AccountBalanceIcon />,
@@ -58,15 +64,15 @@ const structure = [
     link: "/app/typography",
     icon: <TypographyIcon />,
   },*/
-  { id: 4, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { id: 5, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 5,
+    id: 6,
     label: "Notifications",
     link: "/app/notifications",
     icon: <NotificationsIcon />,
   },
   {
-    id: 6,
+    id: 7,
     label: "UI Elements",
     link: "/app/ui",
     icon: <UIElementsIcon />,

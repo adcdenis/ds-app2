@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import ClienteLista from './clienteList'
-import { create, update, excluir, init } from './clienteAction'
+import { create, update, excluir, init, changeTela } from './clienteAction'
 import PageTitle from "../../components/PageTitle"
 
 class Cliente extends React.Component {
@@ -12,14 +12,16 @@ class Cliente extends React.Component {
   }
 
   render() {
+    //this.props.changeTela(this.props.tela);
     return (
       <>
-      <PageTitle title="Clientes"/>
-      <ClienteLista />
+      <PageTitle title={this.props.titulo ? this.props.titulo : 'Lista de Clientes'}/>
+      <ClienteLista/>
       </>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ create, update, excluir, init }, dispatch)
-export default connect(null, mapDispatchToProps)(Cliente)
+const mapStateToProps = (state) => ({ tipoTela: state.cliente.tipoTela })
+const mapDispatchToProps = (dispatch) => bindActionCreators({ create, update, excluir, init, changeTela }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(Cliente)

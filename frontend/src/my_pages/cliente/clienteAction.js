@@ -1,91 +1,116 @@
-import axios from 'axios'
-import { toastr } from 'react-redux-toastr'
-import { initialize } from 'redux-form'
+import axios from "axios";
+import { toastr } from "react-redux-toastr";
+import { initialize } from "redux-form";
 //import { reset as resetForm, initialize } from 'redux-form'
-import Consts from '../../my_common/consts'
-import {formatarFromJsonAnoMesDia, formatarFromDate} from '../../my_common/DateUtil'
+import Consts from "../../my_common/consts";
+import {
+  formatarFromJsonAnoMesDia,
+  formatarFromDate,
+} from "../../my_common/DateUtil";
 //import { toast } from 'react-toastify';
 
-const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) }
+const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) };
 
-export function getList() {
-  const request = axios.get(`${Consts.API_URL}/clientes/populate`)
+export function getList(tipoTela) {
+  tipoTela = tipoTela ? tipoTela : 1;
+  //tipoTela = 3
+
+  let request = null;
+  if (tipoTela === 1) //todos
+    request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters`);
+
+  if (tipoTela === 2) // a vencer em 3 dias
+    request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=3`);
+
+  if (tipoTela === 3) // vencidos
+    request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=0`);
+
+  //const request = axios.get(`${Consts.API_URL}/clientes/populate`);
   return {
-    type: 'LISTAR_CLIENTES',
+    type: "LISTAR_CLIENTES",
     payload: request,
-  }
+  };
 }
 
 export function create(values) {
-  return invoker(values, 'post')
+  return invoker(values, "post");
 }
 
 export function showCliente(cliente, funcao) {
   if (cliente) {
     //convert data
-    cliente.vencimento = formatarFromJsonAnoMesDia(cliente.vencimento)
+    cliente.vencimento = formatarFromJsonAnoMesDia(cliente.vencimento);
     return [
-      initialize('ClienteForm', cliente),
+      initialize("ClienteForm", cliente),
       {
-        type: 'HABILITAR_FORM_CLIENTE',
+        type: "HABILITAR_FORM_CLIENTE",
         payload: funcao,
       },
-    ]
+    ];
   } else {
     return [
-      initialize('ClienteForm', INITIAL_VALUES),
+      initialize("ClienteForm", INITIAL_VALUES),
       {
-        type: 'HABILITAR_FORM_CLIENTE',
-        payload: 'NOVO',
+        type: "HABILITAR_FORM_CLIENTE",
+        payload: "NOVO",
       },
-    ]
+    ];
   }
 }
 
 export function cancelar() {
   return [
     {
-      type: 'HABILITAR_FORM_CLIENTE',
-      payload: 'LISTAR',
+      type: "HABILITAR_FORM_CLIENTE",
+      payload: "LISTAR",
     },
-  ]
+  ];
 }
 
 export function init() {
   return [
-    initialize('ClienteForm', INITIAL_VALUES),
+    initialize("ClienteForm", INITIAL_VALUES),
     getList(),
     {
-      type: 'HABILITAR_FORM_CLIENTE',
-      payload: 'LISTAR',
+      type: "HABILITAR_FORM_CLIENTE",
+      payload: "LISTAR",
     },
-  ]
+  ];
 }
 
 export function update(values) {
-  return invoker(values, 'put')
+  return invoker(values, "put");
 }
 
 export function excluir(values) {
-  return invoker(values, 'delete')
+  return invoker(values, "delete");
 }
 
 function invoker(values, method) {
-  return (dispatch) => {
-    const value_id = values._id ? values._id : ''
+  return dispatch => {
+    const value_id = values._id ? values._id : "";
     axios[method](`${Consts.API_URL}/clientes/${value_id}`, values)
-      .then((resp) => {
-        toastr.success('Sucesso', 'Operação realizada com sucesso!')
+      .then(resp => {
+        toastr.success("Sucesso", "Operação realizada com sucesso!");
         //toast('Sucesso')
-        dispatch([init()])
+        dispatch([init()]);
       })
-      .catch((e) => {
-        e.response.data.errors.forEach((element) => {
-          toastr.error('Erro', element)
-        })
-      })
+      .catch(e => {
+        e.response.data.errors.forEach(element => {
+          toastr.error("Erro", element);
+        });
+      });
     return {
-      type: 'TEMP',
-    }
-  }
+      type: "TEMP",
+    };
+  };
+}
+
+export function changeTela(tela) {
+  return [
+    {
+      type: "TROCAR_TELA",
+      payload: tela,
+    },
+  ];
 }
