@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import classnames from "classnames";
 
 // styles
@@ -13,8 +8,8 @@ import useStyles from "./styles";
 // components
 import Header from "../Header";
 import Sidebar from "../Sidebar";
-import Messages from '../../my_common/msg/msg'
-import Toast from '../../my_common/msg/toast'
+import Messages from "../../my_common/msg/msg";
+import Toast from "../../my_common/msg/toast";
 
 // pages
 //import Dashboard from "../../pages/dashboard";
@@ -24,11 +19,11 @@ import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-import Clientes from '../../my_pages/cliente/cliente'
-import Clientes2 from '../../my_pages/cliente/cliente'
-import DashboardMy from "../../my_pages/dashboard/dashboard"
-import Servidores from '../../my_pages/servidor/servidor'
-import Planos from '../../my_pages/planos/plano'
+import Clientes from "../../my_pages/cliente/cliente";
+import ClienteVencer from "../../my_pages/cliente_vencer/clienteVencer";
+import DashboardMy from "../../my_pages/dashboard/dashboard";
+import Servidores from "../../my_pages/servidor/servidor";
+import Planos from "../../my_pages/planos/plano";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -41,41 +36,37 @@ function Layout(props) {
 
   return (
     <div className={classes.root}>
-        <>
-          <Header history={props.history} />
-          <Sidebar />
-          <div
-            className={classnames(classes.content, {
-              [classes.contentShift]: layoutState.isSidebarOpened,
-            })}
-          >
-            <div className={classes.fakeToolbar} />
-            <Switch>
-              <Route path="/app/dashboard" component={DashboardMy} />
-              <Route path="/app/clientes" component={Clientes} >
-              <Clientes tela={1} key="1"/>
-              </Route>
-              <Route path="/app/clientes-vencer" >
-                <Clientes2 tela={2} titulo="Clientes a Vencer" key="2"/>
-              </Route>
-              <Route path="/app/servidores" component={Servidores} />
-              <Route path="/app/planos" component={Planos} />
-              <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
-              <Route path="/app/notifications" component={Notifications} />
-              <Route
-                exact
-                path="/app/ui"
-                render={() => <Redirect to="/app/ui/icons" />}
-              />
-              <Route path="/app/ui/maps" component={Maps} />
-              <Route path="/app/ui/icons" component={Icons} />
-              <Route path="/app/ui/charts" component={Charts} />
-            </Switch>
-          </div>
-          <Messages/>
-          <Toast/>
-        </>
+      <>
+        <Header history={props.history} />
+        <Sidebar />
+        <div
+          className={classnames(classes.content, {
+            [classes.contentShift]: layoutState.isSidebarOpened,
+          })}
+        >
+          <div className={classes.fakeToolbar} />
+          <Switch>
+            <Route path="/app/dashboard" component={DashboardMy} />
+            <Route path="/app/clientes" component={Clientes} />
+            <Route path="/app/clientes-vencer" component={ClienteVencer} />
+            <Route path="/app/servidores" component={Servidores} />
+            <Route path="/app/planos" component={Planos} />
+            <Route path="/app/typography" component={Typography} />
+            <Route path="/app/tables" component={Tables} />
+            <Route path="/app/notifications" component={Notifications} />
+            <Route
+              exact
+              path="/app/ui"
+              render={() => <Redirect to="/app/ui/icons" />}
+            />
+            <Route path="/app/ui/maps" component={Maps} />
+            <Route path="/app/ui/icons" component={Icons} />
+            <Route path="/app/ui/charts" component={Charts} />
+          </Switch>
+        </div>
+        <Messages />
+        <Toast />
+      </>
     </div>
   );
 }

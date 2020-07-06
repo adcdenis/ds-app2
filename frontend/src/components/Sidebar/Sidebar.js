@@ -63,7 +63,7 @@ const structure = [
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
-  },*/
+  },
   { id: 5, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 6,
@@ -81,7 +81,7 @@ const structure = [
       { label: "Charts", link: "/app/ui/charts" },
       { label: "Maps", link: "/app/ui/maps" },
     ],
-  },
+  },*/
   /*{ id: 5, type: "divider" },
   { id: 6, type: "title", label: "HELP" },
   { id: 7, label: "Library", link: "", icon: <LibraryIcon /> },

@@ -10,7 +10,6 @@ import WhatsCall from './whatsAppCall'
 
 class ClienteList extends React.Component {
   componentDidMount() {
-    this.props.getList(this.props.tipoTela)
   }
 
   render() {

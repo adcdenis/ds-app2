@@ -8,20 +8,20 @@ import PageTitle from "../../components/PageTitle"
 class Cliente extends React.Component {
 
   componentDidMount() {
-    this.props.init()
+    //this.changeTela(1)
+    console.log('didMount Cliente')
   }
 
   render() {
-    //this.props.changeTela(this.props.tela);
+    this.props.init(1)
     return (
       <>
-      <PageTitle title={this.props.titulo ? this.props.titulo : 'Lista de Clientes'}/>
+      <PageTitle title='Lista de Clientes'/>
       <ClienteLista/>
       </>
     )
   }
 }
 
-const mapStateToProps = (state) => ({ tipoTela: state.cliente.tipoTela })
 const mapDispatchToProps = (dispatch) => bindActionCreators({ create, update, excluir, init, changeTela }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Cliente)
+export default connect(null, mapDispatchToProps)(Cliente)

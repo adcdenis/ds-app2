@@ -7,11 +7,14 @@ import {
   formatarFromJsonAnoMesDia,
   formatarFromDate,
 } from "../../my_common/DateUtil";
+
 //import { toast } from 'react-toastify';
 
 const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) };
 
 export function getList(tipoTela) {
+
+  //let tipoTela = store.getState().cliente.tipoTela
   tipoTela = tipoTela ? tipoTela : 1;
   //tipoTela = 3
 
@@ -67,8 +70,12 @@ export function cancelar() {
   ];
 }
 
-export function init() {
+export function init(nrPesq) {
   return [
+    {
+      type: "TROCAR_TELA",
+      payload: nrPesq,
+    },
     initialize("ClienteForm", INITIAL_VALUES),
     getList(),
     {
