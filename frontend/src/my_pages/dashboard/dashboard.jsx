@@ -30,36 +30,43 @@ class Dashboard extends React.Component {
         >
           <Grid item>
             <BoxGrid
-              label='Total Planos a Vencer'
+              label='Vence em 3 dias'
               value={totalAVencer.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
           <Grid item>
             <BoxGrid
-              label='Total Vencidos'
+              label='Vencidos'
               value={totalVencidos.value}
+              icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
+            />
+          </Grid>
+          <Grid item>
+            <BoxGrid
+              label='Clientes Ativos'
+              value={totalClientes.value-totalVencidos.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
 
           <Grid item>
             <BoxGrid
-              label='Total de Clientes'
+              label='Clientes Totais'
               value={totalClientes.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
           <Grid item>
             <BoxGrid
-              label='Total de Servidores'
+              label='Servidores'
               value={totalServidores.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
           <Grid item>
             <BoxGrid
-              label='Total de Planos'
+              label='Planos'
               value={totalPlanos.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />

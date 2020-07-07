@@ -12,26 +12,28 @@ import {
 
 const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) };
 
-export function getList(tipoTela) {
+export function getList() {
+  return (dispatch, getState) => {
+    const tipoTela = getState().cliente.tipoTela;
 
-  //let tipoTela = store.getState().cliente.tipoTela
-  tipoTela = tipoTela ? tipoTela : 1;
-  //tipoTela = 3
+    let request = null;
+    if (tipoTela === 1)
+      //todos
+      request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters`);
 
-  let request = null;
-  if (tipoTela === 1) //todos
-    request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters`);
+    if (tipoTela === 2)
+      // a vencer em 3 dias
+      request = axios.get(
+        `${Consts.API_URL}/clientes/clientesbyfilters?days=3`,
+      );
 
-  if (tipoTela === 2) // a vencer em 3 dias
-    request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=3`);
+    if (tipoTela === 3)
+      // vencidos
+      request = axios.get(
+        `${Consts.API_URL}/clientes/clientesbyfilters?days=0`,
+      );
 
-  if (tipoTela === 3) // vencidos
-    request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=0`);
-
-  //const request = axios.get(`${Consts.API_URL}/clientes/populate`);
-  return {
-    type: "LISTAR_CLIENTES",
-    payload: request,
+    dispatch({ type: "LISTAR_CLIENTES", payload: request });
   };
 }
 
@@ -94,13 +96,14 @@ export function excluir(values) {
 }
 
 function invoker(values, method) {
-  return dispatch => {
+  return (dispatch, getState) => {
     const value_id = values._id ? values._id : "";
     axios[method](`${Consts.API_URL}/clientes/${value_id}`, values)
       .then(resp => {
         toastr.success("Sucesso", "Operação realizada com sucesso!");
         //toast('Sucesso')
-        dispatch([init()]);
+        const tipoTela = getState().cliente.tipoTela;
+        dispatch([init(tipoTela)]);
       })
       .catch(e => {
         e.response.data.errors.forEach(element => {
@@ -111,13 +114,4 @@ function invoker(values, method) {
       type: "TEMP",
     };
   };
-}
-
-export function changeTela(tela) {
-  return [
-    {
-      type: "TROCAR_TELA",
-      payload: tela,
-    },
-  ];
 }

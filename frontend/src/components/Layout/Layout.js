@@ -21,6 +21,7 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import Clientes from "../../my_pages/cliente/cliente";
 import ClienteVencer from "../../my_pages/cliente_vencer/clienteVencer";
+import ClienteVencido from "../../my_pages/cliente_vencido/clienteVencido";
 import DashboardMy from "../../my_pages/dashboard/dashboard";
 import Servidores from "../../my_pages/servidor/servidor";
 import Planos from "../../my_pages/planos/plano";
@@ -48,7 +49,8 @@ function Layout(props) {
           <Switch>
             <Route path="/app/dashboard" component={DashboardMy} />
             <Route path="/app/clientes" component={Clientes} />
-            <Route path="/app/clientes-vencer" component={ClienteVencer} />
+            <Route path="/app/vencer" component={ClienteVencer} />
+            <Route path="/app/vencidos" component={ClienteVencido} />
             <Route path="/app/servidores" component={Servidores} />
             <Route path="/app/planos" component={Planos} />
             <Route path="/app/typography" component={Typography} />

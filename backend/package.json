@@ -1,5 +1,5 @@
 {
-  "name": "my-money-app",
+  "name": "dstv-backend",
   "version": "1.0.0",
   "description": "",
   "engines": {
@@ -9,7 +9,7 @@
   "main": "src/loader.js",
   "scripts": {
     "dev": "nodemon",
-    "prd": "pm2 start src/loader.js --name my-money-backend"
+    "prd": "pm2 start src/loader.js --name dstv"
   },
   "keywords": [],
   "author": "",

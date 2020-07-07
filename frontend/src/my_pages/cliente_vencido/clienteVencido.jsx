@@ -5,16 +5,16 @@ import ClienteLista from '../cliente/clienteList'
 import { create, update, excluir, init } from '../cliente/clienteAction'
 import PageTitle from "../../components/PageTitle/PageTitle"
 
-class ClienteVencer extends React.Component {
+class ClienteVencido extends React.Component {
 
   componentDidMount() {
-    this.props.init(2)
+    this.props.init(3)
   }
 
   render() {
     return (
       <>
-      <PageTitle title='Lista de Clientes a vencer em 3 dias'/>
+      <PageTitle title='Lista de Clientes Vencidos'/>
       <ClienteLista/>
       </>
     )
@@ -23,4 +23,4 @@ class ClienteVencer extends React.Component {
 
 const mapStateToProps = (state) => ({  })
 const mapDispatchToProps = (dispatch) => bindActionCreators({ create, update, excluir, init }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(ClienteVencer)
+export default connect(mapStateToProps, mapDispatchToProps)(ClienteVencido)

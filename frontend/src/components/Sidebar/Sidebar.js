@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
-  NotificationsNone as NotificationsIcon,
+  //NotificationsNone as NotificationsIcon,
   //FormatSize as TypographyIcon,
-  FilterNone as UIElementsIcon,
-  BorderAll as TableIcon,
- // QuestionAnswer as SupportIcon,
+  //FilterNone as UIElementsIcon,
+  ////BorderAll as TableIcon,
+  // QuestionAnswer as SupportIcon,
   //LibraryBooks as LibraryIcon,
   //HelpOutline as FAQIcon,
-  ArrowBack as ArrowBackIcon
+  ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
-import PeopleIcon from '@material-ui/icons/People';
-import ComputerIcon from '@material-ui/icons/Computer';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import PeopleIcon from "@material-ui/icons/People";
+import ComputerIcon from "@material-ui/icons/Computer";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -36,24 +36,30 @@ const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
   {
     id: 1,
+    label: "Clientes a Vencer",
+    link: "/app/vencer",
+    icon: <PeopleIcon />,
+  },
+  {
+    id: 2,
     label: "Clientes",
     link: "/app/clientes",
     icon: <PeopleIcon />,
   },
   {
-    id: 2,
-    label: "Clientes A Vencer",
-    link: "/app/clientes-vencer",
+    id: 3,
+    label: "Clientes Vencidos",
+    link: "/app/vencidos",
     icon: <PeopleIcon />,
   },
   {
-    id: 3,
+    id: 4,
     label: "Servidores",
     link: "/app/servidores",
     icon: <ComputerIcon />,
   },
   {
-    id: 4,
+    id: 5,
     label: "Planos",
     link: "/app/planos",
     icon: <AccountBalanceIcon />,

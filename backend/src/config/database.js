@@ -9,7 +9,7 @@ mongoose.Error.messages.Number.max =
 mongoose.Error.messages.String.enum =
   "'{VALUE}' não é válido para o atributo '{PATH}'."
 
-const urlHeroku = 'mongodb://dsapp:dsapp@ds261332.mlab.com:61332/heroku_pgmnb2sr'
+const urlHeroku = 'mongodb://dstv:dstv78@ds053794.mlab.com:53794/heroku_6lb871t5'
 const urlLocal =  'mongodb://localhost/dsapp'
 const url = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : urlLocal
 
