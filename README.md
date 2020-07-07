@@ -38,3 +38,18 @@ heroku config:set MONGOLAB_URI=mongodb://dstv:dstv78@ds053794.mlab.com:53794/her
 heroku config:set AUTH_SECRET=4bc128hgjgughh#$#@#$$@$f71ab76b99699d6
 git subtree push --prefix backend  heroku master
 heroku logs --tail
+
+----------------------------------------------------------
+DEPLOY HEROKU FRONTEND
+
+
+heroku create dstv-frontend
+
+heroku git:remote -a dstv-frontend
+
+git add .
+$ git commit -am "Ajustando URLs do backend"
+
+git subtree push --prefix dstv-frontend  heroku master
+
+heroku logs --tail
