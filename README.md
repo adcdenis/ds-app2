@@ -50,6 +50,6 @@ heroku git:remote -a dstv-frontend
 git add .
 $ git commit -am "Ajustando URLs do backend"
 
-git subtree push --prefix dstv-frontend  heroku master
+git subtree push --prefix frontend  heroku master
 
 heroku logs --tail
