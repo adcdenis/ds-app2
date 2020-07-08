@@ -18,6 +18,11 @@ import useStyles from "./styles";
 // components
 import Dot from "../Dot";
 
+import {
+  useLayoutDispatch,
+  toggleSidebar,
+} from "../../../../context/LayoutContext";
+
 export default function SidebarLink({
   link,
   icon,
@@ -28,6 +33,8 @@ export default function SidebarLink({
   nested,
   type,
 }) {
+
+  var layoutDispatch = useLayoutDispatch();
   var classes = useStyles();
 
   // local
@@ -54,6 +61,7 @@ export default function SidebarLink({
       <ListItem
         button
         component={link && Link}
+        onClick={isSidebarOpened ? () => toggleSidebar(layoutDispatch) : ()=>{}}
         to={link}
         className={classes.link}
         classes={{

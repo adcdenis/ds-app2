@@ -28,21 +28,21 @@ class Dashboard extends React.Component {
           container
           spacing={2}
         >
-          <Grid item>
+          <Grid item xs={12} md={4}>
             <BoxGrid
               label='Vence em 3 dias'
               value={totalAVencer.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} md={4}>
             <BoxGrid
               label='Vencidos'
               value={totalVencidos.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} md={4}>
             <BoxGrid
               label='Clientes Ativos'
               value={totalClientes.value-totalVencidos.value}
@@ -50,21 +50,21 @@ class Dashboard extends React.Component {
             />
           </Grid>
 
-          <Grid item>
+          <Grid item xs={12} md={4}>
             <BoxGrid
               label='Clientes Totais'
               value={totalClientes.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} md={4}>
             <BoxGrid
               label='Servidores'
               value={totalServidores.value}
               icone={<MonetizationOnOutlinedIcon style={{ fontSize: 80, color: 'white' }} />}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} md={4}>
             <BoxGrid
               label='Planos'
               value={totalPlanos.value}
