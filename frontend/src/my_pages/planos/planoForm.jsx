@@ -47,7 +47,7 @@ class PlanoForm extends React.Component {
               autoFocus
               style={{ marginRight: 20 }}
               inputProps={{
-                maxlength: 20
+                maxLength: 20
               }}
             />
           </Grid>
@@ -61,7 +61,7 @@ class PlanoForm extends React.Component {
               disabled={this.props.readonly}
               style={{ marginRight: 20 }}
               inputProps={{
-                maxlength: 20
+                maxLength: 20
               }}
             /></Grid>
         </Grid>

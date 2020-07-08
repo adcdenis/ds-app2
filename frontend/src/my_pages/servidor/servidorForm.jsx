@@ -40,6 +40,9 @@ class ServidorForm extends React.Component {
           autoFocus
           required
           style={{ marginRight: 20 }}
+          inputProps={{
+            maxLength: 50
+          }}
         />
         <br /><br />
         <Grid
