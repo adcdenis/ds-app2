@@ -3,20 +3,24 @@
 migrando tudo que fiz para um novo template material ui
 
 A Fazer: 
-Icone do whats e disparo de msg padrão ok
-count qnt pra vencer em 3 dias e colocar no dashboard ok
-Página que mostra somente a vencer em 3 dias ok
-Fazer página mostrar apenas vencidos ok
 Testar api de formatação e máscara de input
+mudar o avatar pra um avatar fixo - ninja
 
 Transição leve entre páginas
 Criar componente de botões para utilizar em todas as páginas.
 
 Criar rodapé ? 
+Fazer deploy frontend 
+
+Feito:
 Eliminar páginas de exemplo ok
-Criar ambiente de deploy
-Fazer deploy backend
-Fazer deploy frontend
+Criar ambiente de deploy ok
+Fazer deploy backend ok
+Icone do whats e disparo de msg padrão ok
+count qnt pra vencer em 3 dias e colocar no dashboard ok
+Página que mostra somente a vencer em 3 dias ok
+Fazer página mostrar apenas vencidos ok
+
 
 
 -----------deploy back

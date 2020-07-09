@@ -7,6 +7,7 @@ import SelectField from "material-ui/SelectField";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import NumberFormat from 'react-number-format';
 
 export const renderTextField = ({
   label,
@@ -78,3 +79,32 @@ export const renderSelectField = ({
     children={children}
   />
 );
+
+export const telFormat = (props) => {
+  const { inputRef, input: {onChange}, ...other } = props;
+  return (
+    <NumberFormat
+    {...other}
+    getInputRef={inputRef}
+    onValueChange={(_, e) => onChange(e)}
+    format="+55 (##) #####-####"
+    allowEmptyFormatting
+    //mask="_"
+    customInput={TextField}
+    />
+  );
+}
+
+export const moneyFormat = (props) => {
+  const { inputRef, input: {onChange}, ...other } = props;
+  return (
+    <NumberFormat
+    {...other}
+    getInputRef={inputRef}
+    onValueChange={(_, e) => onChange(e)}
+    thousandSeparator={false} prefix={'R$ '}
+    allowEmptyFormatting
+    customInput={TextField}
+    />
+  );
+}
