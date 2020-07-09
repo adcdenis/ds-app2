@@ -6,16 +6,16 @@ import {
   //InputBase,
   Menu,
   MenuItem,
-  Fab,
+  //Fab,
   //Link
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
-  MailOutline as MailIcon,
+  //MailOutline as MailIcon,
   NotificationsNone as NotificationsIcon,
   //Person as AccountIcon,
   //Search as SearchIcon,
-  Send as SendIcon,
+  //Send as SendIcon,
   //ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import TvIcon from "@material-ui/icons/Tv";
@@ -29,7 +29,7 @@ import useStyles from "./styles";
 // components
 import { Badge, Typography } from "../Wrappers/Wrappers";
 import Notification from "../Notification/Notification";
-import UserAvatar from "../UserAvatar/UserAvatar";
+//import UserAvatar from "../UserAvatar/UserAvatar";
 
 //redux
 import { connect } from "react-redux";
@@ -45,60 +45,41 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
+import ninja1 from "../../my_images/ninja1.png";
+import ninja2 from "../../my_images/ninja2.png";
+import ninja3 from "../../my_images/ninja3.png";
+import ninja4 from "../../my_images/ninja4.png";
+import ninja5 from "../../my_images/ninja5.jpg";
 //import { useUserDispatch} from "../../context/UserContext";
 
-const messages = [
+const notifications = [
   {
     id: 0,
-    variant: "warning",
-    name: "Jane Hew",
-    message: "Hey! How is it going?",
-    time: "9:32",
-  },
-  {
-    id: 1,
-    variant: "success",
-    name: "Lloyd Brown",
-    message: "Check out my new Dashboard",
-    time: "9:18",
-  },
-  {
-    id: 2,
-    variant: "primary",
-    name: "Mark Winstein",
-    message: "I want rearrange the appointment",
-    time: "9:15",
-  },
-  {
-    id: 3,
-    variant: "secondary",
-    name: "Liana Dutti",
-    message: "Good news from sale department",
-    time: "9:09",
+    color: "secondary",
+    type: "notification",
+    message: "Clientes a vencer em 3 dias",
   },
 ];
 
-const notifications = [
-  { id: 0, color: "warning", message: "Check out this awesome ticket" },
-  {
-    id: 1,
-    color: "success",
-    type: "info",
-    message: "What is the best way to get ...",
-  },
-  {
-    id: 2,
-    color: "secondary",
-    type: "notification",
-    message: "This is just a simple notification",
-  },
-  {
-    id: 3,
-    color: "primary",
-    type: "e-commerce",
-    message: "12 new orders has arrived today",
-  },
-];
+function randomImage() {
+  const min = 1;
+  const max = 5;
+  const img = min + Math.floor((max - min) * Math.random());
+  switch (img) {
+    case 1:
+      return ninja1;
+    case 2:
+      return ninja2;
+    case 3:
+      return ninja3;
+    case 4:
+      return ninja4;
+    case 5:
+      return ninja5;
+    default:
+      return ninja4;
+  }
+}
 
 function Header(props) {
   var classes = useStyles();
@@ -106,11 +87,10 @@ function Header(props) {
   // global
   var layoutState = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
+  var ninja = randomImage();
   //var userDispatch = useUserDispatch();
 
   // local
-  var [mailMenu, setMailMenu] = useState(null);
-  var [isMailsUnread, setIsMailsUnread] = useState(true);
   var [notificationsMenu, setNotificationsMenu] = useState(null);
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
@@ -164,26 +144,9 @@ function Header(props) {
         >
           <Badge
             badgeContent={isNotificationsUnread ? notifications.length : null}
-            color="warning"
-          >
-            <NotificationsIcon classes={{ root: classes.headerIcon }} />
-          </Badge>
-        </IconButton>
-        <IconButton
-          color="inherit"
-          aria-haspopup="true"
-          aria-controls="mail-menu"
-          onClick={e => {
-            setMailMenu(e.currentTarget);
-            setIsMailsUnread(false);
-          }}
-          className={classes.headerMenuButton}
-        >
-          <Badge
-            badgeContent={isMailsUnread ? messages.length : null}
             color="secondary"
           >
-            <MailIcon classes={{ root: classes.headerIcon }} />
+            <NotificationsIcon classes={{ root: classes.headerIcon }} />
           </Badge>
         </IconButton>
         <IconButton
@@ -195,65 +158,11 @@ function Header(props) {
         >
           <Avatar
             alt={props.user.name}
-            src="http://lorempixel.com/160/160/people"
+            //src="http://lorempixel.com/160/160/people"
+            src={ninja}
             classes={{ root: classes.headerIcon }}
           />
         </IconButton>
-        <Menu
-          id="mail-menu"
-          open={Boolean(mailMenu)}
-          anchorEl={mailMenu}
-          onClose={() => setMailMenu(null)}
-          MenuListProps={{ className: classes.headerMenuList }}
-          className={classes.headerMenu}
-          classes={{ paper: classes.profileMenu }}
-          disableAutoFocusItem
-        >
-          <div className={classes.profileMenuUser}>
-            <Typography variant="h4" weight="medium">
-              New Messages
-            </Typography>
-            <Typography
-              className={classes.profileMenuLink}
-              component="a"
-              color="secondary"
-            >
-              {messages.length} New Messages
-            </Typography>
-          </div>
-          {messages.map(message => (
-            <MenuItem key={message.id} className={classes.messageNotification}>
-              <div className={classes.messageNotificationSide}>
-                <UserAvatar color={message.variant} name={message.name} />
-                <Typography size="sm" color="text" colorBrightness="secondary">
-                  {message.time}
-                </Typography>
-              </div>
-              <div
-                className={classNames(
-                  classes.messageNotificationSide,
-                  classes.messageNotificationBodySide,
-                )}
-              >
-                <Typography weight="medium" gutterBottom>
-                  {message.name}
-                </Typography>
-                <Typography color="text" colorBrightness="secondary">
-                  {message.message}
-                </Typography>
-              </div>
-            </MenuItem>
-          ))}
-          <Fab
-            variant="extended"
-            color="primary"
-            aria-label="Add"
-            className={classes.sendMessageButton}
-          >
-            Send New Message
-            <SendIcon className={classes.sendButtonIcon} />
-          </Fab>
-        </Menu>
         <Menu
           id="notifications-menu"
           open={Boolean(notificationsMenu)}
@@ -286,7 +195,8 @@ function Header(props) {
               <Container>
                 <Avatar
                   alt={props.user.name}
-                  src="http://lorempixel.com/160/160/people"
+                  //src="http://lorempixel.com/160/160/people"
+                  src={ninja}
                   className={classes.large2}
                 />
               </Container>
@@ -302,7 +212,7 @@ function Header(props) {
             <Button
               variant="contained"
               startIcon={<ExitToAppOutlinedIcon />}
-              color='primary'
+              color="primary"
             >
               Sair
             </Button>
