@@ -3,16 +3,19 @@
 migrando tudo que fiz para um novo template material ui
 
 A Fazer: 
+Mudar ordem dos botões
+Clicar para editar
+Vencimento na primeira coluna - clique nessa coluna
+contador de itens vencidos no sino
 Testar api de formatação e máscara de input
-mudar o avatar pra um avatar fixo - ninja
-
 Transição leve entre páginas
 Criar componente de botões para utilizar em todas as páginas.
-
 Criar rodapé ? 
-Fazer deploy frontend 
+
 
 Feito:
+Fazer deploy frontend ok
+mudar o avatar pra um avatar fixo - ninja ok
 Eliminar páginas de exemplo ok
 Criar ambiente de deploy ok
 Fazer deploy backend ok
