@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
-  Home as HomeIcon,
+  //Home as HomeIcon,
   //NotificationsNone as NotificationsIcon,
   //FormatSize as TypographyIcon,
   //FilterNone as UIElementsIcon,
@@ -12,8 +12,12 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import PeopleIcon from "@material-ui/icons/People";
+import NewReleasesOutlinedIcon from '@material-ui/icons/NewReleasesOutlined';
 import ComputerIcon from "@material-ui/icons/Computer";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+//import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import DesktopAccessDisabledOutlinedIcon from '@material-ui/icons/DesktopAccessDisabledOutlined';
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -33,12 +37,12 @@ import {
 } from "../../context/LayoutContext";
 
 const structure = [
-  { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
+  { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <DashboardOutlinedIcon /> },
   {
     id: 1,
     label: "Clientes a Vencer",
     link: "/app/vencer",
-    icon: <PeopleIcon />,
+    icon: <NewReleasesOutlinedIcon />,
   },
   {
     id: 2,
@@ -50,7 +54,7 @@ const structure = [
     id: 3,
     label: "Clientes Vencidos",
     link: "/app/vencidos",
-    icon: <PeopleIcon />,
+    icon: <DesktopAccessDisabledOutlinedIcon />,
   },
   {
     id: 4,

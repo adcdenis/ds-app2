@@ -46,11 +46,13 @@ import {
   toggleSidebar,
 } from "../../context/LayoutContext";
 import ninja1 from "../../my_images/ninja1.png";
-import ninja2 from "../../my_images/ninja2.png";
+/*import ninja2 from "../../my_images/ninja2.png";
 import ninja3 from "../../my_images/ninja3.png";
 import ninja4 from "../../my_images/ninja4.png";
-import ninja5 from "../../my_images/ninja5.jpg";
-//import { useUserDispatch} from "../../context/UserContext";
+import ninja5 from "../../my_images/ninja5.jpg";*/
+import { getCountAVencer } from '../../my_pages/dashboard/dashboardActions'
+
+//import NotificationMy from '../../my_common/notification/notification'
 
 const notifications = [
   {
@@ -61,7 +63,7 @@ const notifications = [
   },
 ];
 
-function randomImage() {
+/*function randomImage() {
   const min = 1;
   const max = 5;
   const img = min + Math.floor((max - min) * Math.random());
@@ -79,7 +81,7 @@ function randomImage() {
     default:
       return ninja4;
   }
-}
+}*/
 
 function Header(props) {
   var classes = useStyles();
@@ -87,14 +89,26 @@ function Header(props) {
   // global
   var layoutState = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
-  var ninja = randomImage();
-  //var userDispatch = useUserDispatch();
 
   // local
   var [notificationsMenu, setNotificationsMenu] = useState(null);
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
-  //var [isSearchOpen, setSearchOpen] = useState(false);
+  var [isRandomImage, setRandomImage] = useState(true);
+  var [ninja, setNinja] = useState(null);
+  var [notif, setNotif] = useState(notifications);
+
+  if(isRandomImage) {
+    //setNinja(randomImage());
+    setNinja(ninja1);
+    setRandomImage(false)
+    props.getCountAVencer(3)
+  }
+
+  //var noti = notif[0]
+  //noti.message = props.totalAVencer
+  //setNotif([noti])
+  
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -143,7 +157,7 @@ function Header(props) {
           className={classes.headerMenuButton}
         >
           <Badge
-            badgeContent={isNotificationsUnread ? notifications.length : null}
+            badgeContent={isNotificationsUnread ? props.totalAVencer : null}
             color="secondary"
           >
             <NotificationsIcon classes={{ root: classes.headerIcon }} />
@@ -223,6 +237,6 @@ function Header(props) {
   );
 }
 
-const mapStateToProps = state => ({ user: state.auth.user });
-const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
+const mapStateToProps = state => ({ totalAVencer: state.dashboard.totalAVencer.value, user: state.auth.user });
+const mapDispatchToProps = dispatch => bindActionCreators({ logout, getCountAVencer }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
