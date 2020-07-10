@@ -96,7 +96,7 @@ function Header(props) {
   var [profileMenu, setProfileMenu] = useState(null);
   var [isRandomImage, setRandomImage] = useState(true);
   var [ninja, setNinja] = useState(null);
-  var [notif, setNotif] = useState(notifications);
+  //var [notif, setNotif] = useState(notifications);
 
   if(isRandomImage) {
     //setNinja(randomImage());
@@ -108,7 +108,6 @@ function Header(props) {
   //var noti = notif[0]
   //noti.message = props.totalAVencer
   //setNotif([noti])
-  
 
   return (
     <AppBar position="fixed" className={classes.appBar}>

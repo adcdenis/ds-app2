@@ -30,7 +30,7 @@ class ClienteList extends React.Component {
                 onClick: (event, rowData) => this.props.showCliente(rowData, 'EXCLUIR')
               },
               {
-                icon: () => <AddBoxOutlinedIcon/>,
+                icon: () => <AddBoxOutlinedIcon />,
                 tooltip: 'Adicionar',
                 isFreeAction: true,
                 onClick: () => this.props.showCliente()
@@ -43,15 +43,26 @@ class ClienteList extends React.Component {
                 if (!(x.tableData.id % 2)) {
                   return { backgroundColor: "#f2f2f2" }
                 }
-              },headerStyle: {
+              }, headerStyle: {
                 backgroundColor: '#536DFE',
                 color: '#FFF'
               }
             }}
             columns={[
-              { title: "Nome", field: "nome", width: '50%' },
-              { title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (formatarFromJsonDiaMesAno(rowData.vencimento)), width: '10%' },
-              { title: "Alerta", field: "telefone", width: '10%', render: (rowData) => (<WhatsCall cliente={rowData}/>) },
+              {
+                title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (
+                  <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{cursor:'pointer'}}>
+                    {formatarFromJsonDiaMesAno(rowData.vencimento)}
+                  </div>
+                ), width: '10%'
+              },
+              { title: "Nome", field: "nome", width: '35%',render: (rowData) => (
+                <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{cursor:'pointer'}}>
+                  {rowData.nome}
+                </div>
+              ) },
+              { title: "Alerta", field: "telefone", width: '10%', render: (rowData) => (<WhatsCall cliente={rowData} />) },
+              { title: "Observação", field: "observacao", width: '15%' },
               { title: "Servidor", field: "servidor.nome", width: '15%' },
               { title: "Plano", field: "plano.nome", width: '15%' },
             ]}

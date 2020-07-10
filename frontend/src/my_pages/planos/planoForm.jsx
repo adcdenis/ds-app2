@@ -72,6 +72,12 @@ class PlanoForm extends React.Component {
           justify="center"
         >
           <Grid item>
+            <Button variant="contained" onClick={() => this.props.cancelar()}
+              startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+              Cancelar
+        </Button>
+          </Grid>
+          <Grid item>
             <If rendered={!this.props.readonly}>
               <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
                 {this.props.buttonLabel}
@@ -82,12 +88,6 @@ class PlanoForm extends React.Component {
                 {this.props.buttonLabel}
               </Button>
             </If>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={() => this.props.cancelar()}
-              startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
-              Cancelar
-        </Button>
           </Grid>
         </Grid>
       </form >
