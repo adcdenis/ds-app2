@@ -7,6 +7,7 @@ import ClientForm from './clienteForm'
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import { formatarFromJsonDiaMesAno } from '../../my_common/DateUtil'
 import WhatsCall from './whatsAppCall'
+import Fade from '@material-ui/core/Fade';
 
 class ClienteList extends React.Component {
   componentDidMount() {
@@ -17,80 +18,84 @@ class ClienteList extends React.Component {
     switch (this.props.action) {
       case 'LISTAR':
         return (
-          <MaterialTable
-            actions={[
-              {
-                icon: 'edit',
-                tooltip: 'Editar',
-                onClick: (event, rowData) => this.props.showCliente(rowData, 'EDITAR')
-              },
-              {
-                icon: 'delete',
-                tooltip: 'Apagar',
-                onClick: (event, rowData) => this.props.showCliente(rowData, 'EXCLUIR')
-              },
-              {
-                icon: () => <AddBoxOutlinedIcon />,
-                tooltip: 'Adicionar',
-                isFreeAction: true,
-                onClick: () => this.props.showCliente()
-              }
-            ]}
-            options={{
-              actionsColumnIndex: -1,
-              exportButton: true,
-              rowStyle: x => {
-                if (!(x.tableData.id % 2)) {
-                  return { backgroundColor: "#f2f2f2" }
+          <Fade in={true}>
+            <MaterialTable
+              actions={[
+                {
+                  icon: 'edit',
+                  tooltip: 'Editar',
+                  onClick: (event, rowData) => this.props.showCliente(rowData, 'EDITAR')
+                },
+                {
+                  icon: 'delete',
+                  tooltip: 'Apagar',
+                  onClick: (event, rowData) => this.props.showCliente(rowData, 'EXCLUIR')
+                },
+                {
+                  icon: () => <AddBoxOutlinedIcon />,
+                  tooltip: 'Adicionar',
+                  isFreeAction: true,
+                  onClick: () => this.props.showCliente()
                 }
-              }, headerStyle: {
-                backgroundColor: '#536DFE',
-                color: '#FFF'
+              ]}
+              options={{
+                actionsColumnIndex: -1,
+                exportButton: true,
+                rowStyle: x => {
+                  if (!(x.tableData.id % 2)) {
+                    return { backgroundColor: "#f2f2f2" }
+                  }
+                }, headerStyle: {
+                  backgroundColor: '#536DFE',
+                  color: '#FFF'
+                }
+              }}
+              columns={[
+                {
+                  title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (
+                    <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{ cursor: 'pointer' }}>
+                      {formatarFromJsonDiaMesAno(rowData.vencimento)}
+                    </div>
+                  ), width: '10%'
+                },
+                {
+                  title: "Nome", field: "nome", width: '35%', render: (rowData) => (
+                    <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{ cursor: 'pointer' }}>
+                      {rowData.nome}
+                    </div>
+                  )
+                },
+                { title: "Alerta", field: "telefone", width: '10%', render: (rowData) => (<WhatsCall cliente={rowData} />) },
+                { title: "Observação", field: "observacao", width: '15%' },
+                { title: "Servidor", field: "servidor.nome", width: '15%' },
+                { title: "Plano", field: "plano.nome", width: '15%' },
+              ]}
+              localization={{
+                header: {
+                  actions: 'Ações'
+                },
+                body: {
+                  emptyDataSourceMessage: 'Nenhum registro para exibir'
+                },
+                toolbar: {
+                  searchTooltip: 'Pesquisar',
+                  searchPlaceholder: 'Pesquisar',
+                },
+                pagination: {
+                  labelRowsSelect: 'linhas',
+                  labelDisplayedRows: '{count} de {from}-{to}',
+                  firstTooltip: 'Primeira página',
+                  previousTooltip: 'Página anterior',
+                  nextTooltip: 'Próxima página',
+                  lastTooltip: 'Última página'
+                }
               }
-            }}
-            columns={[
-              {
-                title: "Vencimento", field: "vencimento", type: "date", render: (rowData) => (
-                  <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{cursor:'pointer'}}>
-                    {formatarFromJsonDiaMesAno(rowData.vencimento)}
-                  </div>
-                ), width: '10%'
-              },
-              { title: "Nome", field: "nome", width: '35%',render: (rowData) => (
-                <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{cursor:'pointer'}}>
-                  {rowData.nome}
-                </div>
-              ) },
-              { title: "Alerta", field: "telefone", width: '10%', render: (rowData) => (<WhatsCall cliente={rowData} />) },
-              { title: "Observação", field: "observacao", width: '15%' },
-              { title: "Servidor", field: "servidor.nome", width: '15%' },
-              { title: "Plano", field: "plano.nome", width: '15%' },
-            ]}
-            localization={{
-              header: {
-                actions: 'Ações'
-              },
-              body: {
-                emptyDataSourceMessage: 'Nenhum registro para exibir'
-              },
-              toolbar: {
-                searchTooltip: 'Pesquisar',
-                searchPlaceholder: 'Pesquisar',
-              },
-              pagination: {
-                labelRowsSelect: 'linhas',
-                labelDisplayedRows: '{count} de {from}-{to}',
-                firstTooltip: 'Primeira página',
-                previousTooltip: 'Página anterior',
-                nextTooltip: 'Próxima página',
-                lastTooltip: 'Última página'
-              }
-            }
 
-            }
-            data={this.props.list}
-            title=""
-          />
+              }
+              data={this.props.list}
+              title=""
+            />
+          </Fade>
         )
       case 'NOVO':
         return (

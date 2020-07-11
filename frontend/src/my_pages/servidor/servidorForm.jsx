@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import If from '../../my_common/operador/if'
 import { renderTextField } from '../../my_common/MaterialUtil'
 import Grid from '@material-ui/core/Grid'
+import Fade from '@material-ui/core/Fade';
 
 const validate = values => {
   const errors = {}
@@ -30,46 +31,48 @@ class ServidorForm extends React.Component {
     //const classes = useStyles();
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
-        <Field
-          name='nome'
-          disabled={this.props.readonly}
-          label='Nome'
-          component={renderTextField}
-          fullWidth
-          autoFocus
-          required
-          style={{ marginRight: 20 }}
-          inputProps={{
-            maxLength: 50
-          }}
-        />
-        <br /><br />
-        <Grid
-          container
-          spacing={2}
-          justify="center"
-        >
-          <Grid item>
-            <Button variant="contained" onClick={() => this.props.cancelar()}
-              startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
-              Cancelar
+      <Fade in={true}>
+        <form onSubmit={handleSubmit}>
+          <Field
+            name='nome'
+            disabled={this.props.readonly}
+            label='Nome'
+            component={renderTextField}
+            fullWidth
+            autoFocus
+            required
+            style={{ marginRight: 20 }}
+            inputProps={{
+              maxLength: 50
+            }}
+          />
+          <br /><br />
+          <Grid
+            container
+            spacing={2}
+            justify="center"
+          >
+            <Grid item>
+              <Button variant="contained" onClick={() => this.props.cancelar()}
+                startIcon={<BackspaceOutlinedIcon />} style={{ marginLeft: 20 }} >
+                Cancelar
             </Button>
+            </Grid>
+            <Grid item>
+              <If rendered={!this.props.readonly}>
+                <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
+                  {this.props.buttonLabel}
+                </Button>
+              </If>
+              <If rendered={this.props.readonly}>
+                <Button onClick={() => this.props.onsubmit(this.props.servidor)} color="primary" variant="contained" startIcon={<SaveIcon />} >
+                  {this.props.buttonLabel}
+                </Button>
+              </If>
+            </Grid>
           </Grid>
-          <Grid item>
-            <If rendered={!this.props.readonly}>
-              <Button type='submit' variant="contained" color="primary" startIcon={<SaveIcon />} >
-                {this.props.buttonLabel}
-              </Button>
-            </If>
-            <If rendered={this.props.readonly}>
-              <Button onClick={() => this.props.onsubmit(this.props.servidor)} color="primary" variant="contained" startIcon={<SaveIcon />} >
-                {this.props.buttonLabel}
-              </Button>
-            </If>
-          </Grid>
-        </Grid>
-      </form >
+        </form >
+      </Fade>
     )
   }
 }

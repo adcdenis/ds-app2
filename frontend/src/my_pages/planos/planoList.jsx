@@ -5,6 +5,7 @@ import { getList, show, create, excluir, update } from './planoAction'
 import MaterialTable from "material-table";
 import PlanoForm from './planoForm'
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+import Fade from '@material-ui/core/Fade';
 
 class PlanoList extends React.Component {
   componentDidMount() {
@@ -16,66 +17,74 @@ class PlanoList extends React.Component {
     switch (this.props.action) {
       case 'LISTAR':
         return (
-          <MaterialTable
-            actions={[
-              {
-                icon: 'edit',
-                tooltip: 'Editar',
-                onClick: (event, rowData) => this.props.show(rowData, 'EDITAR')
-              },
-              {
-                icon: 'delete',
-                tooltip: 'Apagar',
-                onClick: (event, rowData) => this.props.show(rowData, 'EXCLUIR')
-              },
-              {
-                icon: () => <AddBoxOutlinedIcon/>,
-                tooltip: 'Adicionar',
-                isFreeAction: true,
-                onClick: () => this.props.show()
-              }
-            ]}
-            options={{
-              actionsColumnIndex: -1,
-              exportButton: true,
-              rowStyle: x => {
-                if (!(x.tableData.id % 2)) {
-                  return { backgroundColor: "#f2f2f2" }
+          <Fade in={true}>
+            <MaterialTable
+              actions={[
+                {
+                  icon: 'edit',
+                  tooltip: 'Editar',
+                  onClick: (event, rowData) => this.props.show(rowData, 'EDITAR')
+                },
+                {
+                  icon: 'delete',
+                  tooltip: 'Apagar',
+                  onClick: (event, rowData) => this.props.show(rowData, 'EXCLUIR')
+                },
+                {
+                  icon: () => <AddBoxOutlinedIcon />,
+                  tooltip: 'Adicionar',
+                  isFreeAction: true,
+                  onClick: () => this.props.show()
                 }
-              },headerStyle: {
-                backgroundColor: '#536DFE',
-                color: '#FFF'
+              ]}
+              options={{
+                actionsColumnIndex: -1,
+                exportButton: true,
+                rowStyle: x => {
+                  if (!(x.tableData.id % 2)) {
+                    return { backgroundColor: "#f2f2f2" }
+                  }
+                }, headerStyle: {
+                  backgroundColor: '#536DFE',
+                  color: '#FFF'
+                }
+              }}
+              columns={[
+                {
+                  title: "Nome", field: "nome", width: '50%', render: (rowData) => (
+                    <div onClick={() => this.props.show(rowData, 'EDITAR')} style={{ cursor: 'pointer' }}>
+                      {rowData.nome}
+                    </div>
+                  )
+                },
+                { title: "Valor", field: "valor", render: (rowData) => (`R$ ${rowData.valor}`), width: '50%' }
+              ]}
+              localization={{
+                header: {
+                  actions: 'Ações'
+                },
+                body: {
+                  emptyDataSourceMessage: 'Nenhum registro para exibir'
+                },
+                toolbar: {
+                  searchTooltip: 'Pesquisar',
+                  searchPlaceholder: 'Pesquisar'
+                },
+                pagination: {
+                  labelRowsSelect: 'linhas',
+                  labelDisplayedRows: '{count} de {from}-{to}',
+                  firstTooltip: 'Primeira página',
+                  previousTooltip: 'Página anterior',
+                  nextTooltip: 'Próxima página',
+                  lastTooltip: 'Última página'
+                }
               }
-            }}
-            columns={[
-              { title: "Nome", field: "nome", width: '50%' },
-              { title: "Valor", field: "valor", render: (rowData) => (`R$ ${rowData.valor}`), width: '50%' }
-            ]}
-            localization={{
-              header: {
-                actions: 'Ações'
-              },
-              body: {
-                emptyDataSourceMessage: 'Nenhum registro para exibir'
-              },
-              toolbar: {
-                searchTooltip: 'Pesquisar',
-                searchPlaceholder: 'Pesquisar'
-              },
-              pagination: {
-                labelRowsSelect: 'linhas',
-                labelDisplayedRows: '{count} de {from}-{to}',
-                firstTooltip: 'Primeira página',
-                previousTooltip: 'Página anterior',
-                nextTooltip: 'Próxima página',
-                lastTooltip: 'Última página'
-              }
-            }
 
-            }
-            data={this.props.list}
-            title=""
-          />
+              }
+              data={this.props.list}
+              title=""
+            />
+          </Fade>
         )
       case 'NOVO':
         return (

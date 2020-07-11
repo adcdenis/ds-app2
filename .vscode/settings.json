@@ -1,9 +1,9 @@
 {
     "files.exclude": {
-        "backend": true,
-        "frontend/node_modules": true,
-        ".vscode": true,
-        "frontend/public": true
+        "backend": false,
+        "frontend/node_modules": false,
+        ".vscode": false,
+        "frontend/public": false
     },
-    "workspace.isHidden": true
+    "workspace.isHidden": false
 }
