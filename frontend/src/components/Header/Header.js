@@ -51,6 +51,7 @@ import ninja3 from "../../my_images/ninja3.png";
 import ninja4 from "../../my_images/ninja4.png";
 import ninja5 from "../../my_images/ninja5.jpg";*/
 import { getCountAVencer } from '../../my_pages/dashboard/dashboardActions'
+import { useHistory } from 'react-router-dom';
 
 //import NotificationMy from '../../my_common/notification/notification'
 
@@ -84,6 +85,9 @@ const notifications = [
 }*/
 
 function Header(props) {
+
+  const history = useHistory();
+
   var classes = useStyles();
 
   // global
@@ -187,7 +191,7 @@ function Header(props) {
           {notifications.map(notification => (
             <MenuItem
               key={notification.id}
-              onClick={() => setNotificationsMenu(null)}
+              onClick={() => {setNotificationsMenu(null); history.push("/app/vencer")}}
               className={classes.headerMenuItem}
             >
               <Notification {...notification} typographyVariant="inherit" />
