@@ -30,6 +30,7 @@ export default function SidebarLink({
   children,
   location,
   isSidebarOpened,
+  isSmallScreen,
   nested,
   type,
 }) {
@@ -61,7 +62,7 @@ export default function SidebarLink({
       <ListItem
         button
         component={link && Link}
-        onClick={isSidebarOpened ? () => toggleSidebar(layoutDispatch) : ()=>{}}
+        onClick={isSidebarOpened && isSmallScreen ? () => toggleSidebar(layoutDispatch) : ()=>{}}
         to={link}
         className={classes.link}
         classes={{

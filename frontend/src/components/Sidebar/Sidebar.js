@@ -12,12 +12,12 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import PeopleIcon from "@material-ui/icons/People";
-import NewReleasesOutlinedIcon from '@material-ui/icons/NewReleasesOutlined';
+import NewReleasesOutlinedIcon from "@material-ui/icons/NewReleasesOutlined";
 import ComputerIcon from "@material-ui/icons/Computer";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 //import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import DesktopAccessDisabledOutlinedIcon from '@material-ui/icons/DesktopAccessDisabledOutlined';
+import DesktopAccessDisabledOutlinedIcon from "@material-ui/icons/DesktopAccessDisabledOutlined";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -37,7 +37,12 @@ import {
 } from "../../context/LayoutContext";
 
 const structure = [
-  { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <DashboardOutlinedIcon /> },
+  {
+    id: 0,
+    label: "Dashboard",
+    link: "/app/dashboard",
+    icon: <DashboardOutlinedIcon />,
+  },
   {
     id: 1,
     label: "Clientes a Vencer",
@@ -167,6 +172,7 @@ function Sidebar({ location }) {
         {structure.map(link => (
           <SidebarLink
             key={link.id}
+            isSmallScreen={isSmallScreen()}
             location={location}
             isSidebarOpened={isSidebarOpened}
             {...link}
@@ -187,6 +193,14 @@ function Sidebar({ location }) {
     } else if (!isSmallScreen && !isPermanent) {
       setPermanent(true);
     }
+  }
+
+  function isSmallScreen() {
+    var windowWidth = window.innerWidth;
+    var breakpointWidth = theme.breakpoints.values.md;
+    var isSmallScreen = windowWidth < breakpointWidth;
+    console.log(`isSmallScreen: ${isSmallScreen}`)
+    return isSmallScreen;
   }
 }
 
