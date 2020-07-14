@@ -19,7 +19,7 @@ export function getList() {
     let request = null;
     if (tipoTela === 1)
       //todos
-      request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters`);
+      request = axios.get(`${Consts.API_URL}/clientes/clientesbyfilters?days=0`);
 
     if (tipoTela === 2)
       // a vencer em 3 dias
@@ -30,7 +30,7 @@ export function getList() {
     if (tipoTela === 3)
       // vencidos
       request = axios.get(
-        `${Consts.API_URL}/clientes/clientesbyfilters?days=0`,
+        `${Consts.API_URL}/clientes/clientesbyfilters?days=-1`,
       );
 
     dispatch({ type: "LISTAR_CLIENTES", payload: request });
@@ -114,4 +114,14 @@ function invoker(values, method) {
       type: "TEMP",
     };
   };
+}
+
+export function updateVencimento(values) {
+  var date = new Date(values.vencimento);
+  //date.setMinutes(date.getMinutes()-date.getTimezoneOffset())
+  date.setDate(date.getDate() + 31);
+  values.vencimento = JSON.stringify(date);
+  values.vencimento = JSON.parse(values.vencimento);
+  console.log(values)
+  return invoker(values, "put");
 }

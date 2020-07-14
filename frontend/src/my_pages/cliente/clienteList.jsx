@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getList, showCliente, create, excluir, update } from './clienteAction'
+import { getList, showCliente, create, excluir, update, updateVencimento } from './clienteAction'
 import MaterialTable from "material-table";
 import ClientForm from './clienteForm'
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import { formatarFromJsonDiaMesAno } from '../../my_common/DateUtil'
 import WhatsCall from './whatsAppCall'
 import Fade from '@material-ui/core/Fade';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 class ClienteList extends React.Component {
   componentDidMount() {
@@ -59,13 +60,14 @@ class ClienteList extends React.Component {
                   ), width: '10%'
                 },
                 {
-                  title: "Nome", field: "nome", width: '35%', render: (rowData) => (
+                  title: "Nome", field: "nome", width: '30%', render: (rowData) => (
                     <div onClick={() => this.props.showCliente(rowData, 'EDITAR')} style={{ cursor: 'pointer' }}>
                       {rowData.nome}
                     </div>
                   )
                 },
                 { title: "Alerta", field: "telefone", width: '10%', render: (rowData) => (<WhatsCall cliente={rowData} />) },
+                { title: "Renovar", field: "telefone", width: '5%', render: (rowData) => <div onClick={() => this.props.updateVencimento(rowData)} style={{ cursor: 'pointer' }}><AutorenewIcon /></div> },
                 { title: "Observação", field: "observacao", width: '15%' },
                 { title: "Servidor", field: "servidor.nome", width: '15%' },
                 { title: "Plano", field: "plano.nome", width: '15%' },
@@ -117,5 +119,5 @@ class ClienteList extends React.Component {
 
 const mapStateToProps = (state) => ({ tipoTela: state.cliente.tipoTela, list: state.cliente.list, action: state.cliente.action })
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getList, showCliente, create, update, excluir }, dispatch)
+  bindActionCreators({ getList, showCliente, create, update, excluir, updateVencimento }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(ClienteList)

@@ -43,7 +43,8 @@ Cliente.route('populate', (req, res, next) => {
 /**
  * Se tiver o parametro days positivo, traz somente os que vão vencer a x dias
  * Se não tiver o parâmetro days, traz todos
- * Se o parâmetro for negativo ou zero, traz vencidos
+ * Se o parâmetro for 0 traz somente a vencer
+ * Se o parâmetro for negativo traz vencidos
  * Se tiver o parâmetro count só conta, se não tiver traz os registros conforme os filtros de day
  */
 Cliente.route('clientesbyfilters', (req, res, next) => {
@@ -61,16 +62,24 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   // ("2018-12-05T23:59:59.999
   let filter = {}
 
-  if (req.query.days || parseInt(req.query.days) === 0) {
-    filter =
-      parseInt(req.query.days) > 0
-        ? {
-            vencimento: {
-              $gte: new Date(dataAtual),
-              $lte: new Date(dataFutura),
-            },
-          }
-        : { vencimento: { $lt: dataAtual } }
+  console.log(`Parâmetro days: ${req.query.days}`)
+  if (req.query.days !== undefined) {
+    if (parseInt(req.query.days) === 0) {
+      filter = { vencimento: { $gte: dataAtual } }
+    }
+
+    if (parseInt(req.query.days) > 0) {
+      filter = {
+        vencimento: {
+          $gte: new Date(dataAtual),
+          $lte: new Date(dataFutura),
+        },
+      }
+    }
+
+    if (parseInt(req.query.days) < 0) {
+      filter = { vencimento: { $lt: dataAtual } }
+    }
   }
   console.log(dataAtual)
   console.log(dataFutura)
@@ -79,25 +88,21 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   const isCount = req.query.count ? true : false
 
   let query = Cliente.find(filter)
-  .populate('servidor')
-  .populate('plano')
-  .sort({ vencimento: -1 })
+    .populate('servidor')
+    .populate('plano')
+    .sort({ vencimento: 1 })
 
-  query = isCount ?
-    query
-    .count()
-    :
-    query
+  query = isCount ? query.count() : query
 
   query.exec((error, value) => {
-      if (error) {
-        res.status(500).json({ errors: [error] })
-      } else {
-        res.json({
-          value,
-        })
-      }
-    })
+    if (error) {
+      res.status(500).json({ errors: [error] })
+    } else {
+      res.json({
+        value,
+      })
+    }
+  })
 })
 
 /*Cliente.route('summary', (req, res, next) => {
