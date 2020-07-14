@@ -23,6 +23,7 @@ const clienteSchema = new mongoose.Schema({
   observacao: { type: String, required: false },
   plano: {type: Schema.ObjectId, ref: 'Plano'},
   servidor: {type: Schema.ObjectId, ref: 'Servidor'},
+  user: {type: Schema.ObjectId, ref: 'User'}
 })
 
 module.exports = restful.model('Cliente', clienteSchema)

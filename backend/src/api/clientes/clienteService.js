@@ -48,6 +48,8 @@ Cliente.route('populate', (req, res, next) => {
  * Se tiver o parâmetro count só conta, se não tiver traz os registros conforme os filtros de day
  */
 Cliente.route('clientesbyfilters', (req, res, next) => {
+
+  const idUser = req.query.user ? req.query.user : 0
   const add = req.query.days ? req.query.days : 0
 
   let dataAtual = moment().format('YYYY-MM-DD[T00:00:00.000Z]')
@@ -81,6 +83,11 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
       filter = { vencimento: { $lt: dataAtual } }
     }
   }
+
+  //Filtro de usuário
+  if(idUser > 0)
+   filter.user = { $eq: idUser}
+
   console.log(dataAtual)
   console.log(dataFutura)
   console.log(filter)

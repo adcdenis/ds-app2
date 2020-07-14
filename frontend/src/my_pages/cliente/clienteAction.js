@@ -15,6 +15,8 @@ const INITIAL_VALUES = { vencimento: formatarFromDate(new Date()) };
 export function getList() {
   return (dispatch, getState) => {
     const tipoTela = getState().cliente.tipoTela;
+    const user = getState().auth.user.name;
+    console.log(user)
 
     let request = null;
     if (tipoTela === 1)
