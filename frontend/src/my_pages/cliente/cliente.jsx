@@ -21,6 +21,5 @@ class Cliente extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({  })
 const mapDispatchToProps = (dispatch) => bindActionCreators({ create, update, excluir, init }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Cliente)
+export default connect(null, mapDispatchToProps)(Cliente)
