@@ -17,13 +17,13 @@ const debtSchema = new mongoose.Schema({
 const clienteSchema = new mongoose.Schema({
   nome: { type: String, required: true },
   usuario: { type: String, required: false },
-  email: { type: String, required: false },
+  email: { type: String, required: false},
   vencimento: { type: Date, required: true },
   telefone: { type: Number, required: false },
   observacao: { type: String, required: false },
   plano: {type: Schema.ObjectId, ref: 'Plano'},
   servidor: {type: Schema.ObjectId, ref: 'Servidor'},
-  user: {type: Schema.ObjectId, ref: 'User'}
+  userName: { type: String, required: false }
 })
 
 module.exports = restful.model('Cliente', clienteSchema)

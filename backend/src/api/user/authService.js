@@ -67,8 +67,9 @@ const login = (req, res, next) => {
       const token = jwt.sign({...user}, env.authSecret, {
         expiresIn: '1 day',
       })
-      const { name, email } = user
-      res.json({ name, email, token })
+      const { isAdmin, name, email } = user
+      const userName = email.split('@')[0]
+      res.json({ isAdmin, userName, name, email, token })
     } else {
       return res.status(400).send({ errors: ['Usuário/Senha inválidos'] })
     }

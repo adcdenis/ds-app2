@@ -56,7 +56,7 @@ class ClienteForm extends React.Component {
   }
   render() {
     //const classes = useStyles();
-    console.log(this.props.listaServidor)
+    //console.log(this.props.listaServidor)
     const { handleSubmit } = this.props
     return (
       <Fade in={true}>

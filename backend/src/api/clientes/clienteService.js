@@ -49,7 +49,7 @@ Cliente.route('populate', (req, res, next) => {
  */
 Cliente.route('clientesbyfilters', (req, res, next) => {
 
-  const idUser = req.query.user ? req.query.user : 0
+  const userName = req.query.userName ? req.query.userName : 0
   const add = req.query.days ? req.query.days : 0
 
   let dataAtual = moment().format('YYYY-MM-DD[T00:00:00.000Z]')
@@ -65,6 +65,7 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   let filter = {}
 
   console.log(`Parâmetro days: ${req.query.days}`)
+  console.log(`Parâmetro userName: ${req.query.userName}`)
   if (req.query.days !== undefined) {
     if (parseInt(req.query.days) === 0) {
       filter = { vencimento: { $gte: dataAtual } }
@@ -85,8 +86,8 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   }
 
   //Filtro de usuário
-  if(idUser > 0)
-   filter.user = { $eq: idUser}
+  if(userName)
+   filter.userName = { $eq: userName}
 
   console.log(dataAtual)
   console.log(dataFutura)
@@ -103,8 +104,10 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
 
   query.exec((error, value) => {
     if (error) {
+      console.log(error)
       res.status(500).json({ errors: [error] })
     } else {
+      console.log(value)
       res.json({
         value,
       })
