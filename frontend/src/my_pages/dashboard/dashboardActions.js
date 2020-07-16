@@ -21,9 +21,9 @@ export function getCountServidores() {
   return (dispatch, getState) => {
     const userName = getState().auth.user.isAdmin
       ? ""
-      : `?userName=${getState().auth.user.userName}`;
+      : `&userName=${getState().auth.user.userName}`;
 
-    const request = axios.get(`${Consts.API_URL}/servidores/count${userName}`);
+    const request = axios.get(`${Consts.API_URL}/servidores/servidoresbyfilters?count=true${userName}`);
     dispatch({
       type: "TOTAL_SERVIDORES",
       payload: request,
@@ -35,9 +35,10 @@ export function getCountPlanos() {
   return (dispatch, getState) => {
     const userName = getState().auth.user.isAdmin
       ? ""
-      : `?userName=${getState().auth.user.userName}`;
+      : `&userName=${getState().auth.user.userName}`;
 
-    const request = axios.get(`${Consts.API_URL}/planos/count${userName}`);
+    console.log(`${Consts.API_URL}/planos/planosbyfilters?isCount=true${userName}`)
+    const request = axios.get(`${Consts.API_URL}/planos/planosbyfilters?count=true${userName}`);
     dispatch({
       type: "TOTAL_PLANOS",
       payload: request,

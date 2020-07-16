@@ -23,4 +23,35 @@ Servidor.route("count", (req, res, next) => {
   })
 })
 
+Servidor.route('servidoresbyfilters', (req, res, next) => {
+  const userName = req.query.userName ? req.query.userName : 0
+
+  let filter = {}
+
+  console.log(`Parâmetro userName no plano service: ${req.query.userName}`)
+
+  //Filtro de usuário
+  if (userName) filter.userName = { $eq: userName }
+
+  console.log(filter)
+
+  const isCount = req.query.count ? true : false
+
+  let query = Servidor.find(filter).sort({ nome: 1 })
+
+  query = isCount ? query.count() : query
+
+  query.exec((error, value) => {
+    if (error) {
+      console.log(error)
+      res.status(500).json({ errors: [error] })
+    } else {
+      console.log(value)
+      res.json({
+        value,
+      })
+    }
+  })
+})
+
 module.exports = Servidor
