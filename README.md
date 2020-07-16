@@ -3,7 +3,7 @@
 migrando tudo que fiz para um novo template material ui
 
 A Fazer:
-Multi usuário
+Multi usuário - Em andamento -> IMPLEMENTAR BACK END DO PLANO E SERVIDORES, FEITO DO CLIENTE
 Testar api de formatação e máscara de input
 Criar componente de botões para utilizar em todas as páginas.
 Criar rodapé ?

@@ -104,10 +104,10 @@ export function excluir(values) {
 function invoker(values, method) {
   return (dispatch, getState) => {
 
-    //if(method === 'post') {
-      //values.userName = getState().auth.user.userName
-      //console.log('values in post: ' + values)
-    //}
+    if(method === 'post') {
+      values.userName = getState().auth.user.userName
+      console.log('values in post: ' + values)
+    }
     const value_id = values._id ? values._id : "";
     console.log('values: ')
     console.log(values)
