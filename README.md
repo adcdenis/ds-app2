@@ -3,7 +3,7 @@
 migrando tudo que fiz para um novo template material ui
 
 A Fazer:
-Multi usuário
+Multi usuário - Em andamento -> IMPLEMENTAR BACK END DO PLANO E SERVIDORES, FEITO DO CLIENTE
 Testar api de formatação e máscara de input
 Criar componente de botões para utilizar em todas as páginas.
 Criar rodapé ?
@@ -44,6 +44,8 @@ $ heroku config:set AUTH_SECRET=4bc12841b901f1716f71ab76b99699d6
 mongodb://dstv:dstv78@ds053794.mlab.com:53794/heroku_6lb871t5
 heroku config:set MONGOLAB_URI=mongodb://dstv:dstv78@ds053794.mlab.com:53794/heroku_6lb871t5
 heroku config:set AUTH_SECRET=4bc128hgjgughh#$#@#$$@$f71ab76b99699d6
+
+heroku git:remote -a dstv-backend
 git subtree push --prefix backend  heroku master
 heroku logs --tail
 
