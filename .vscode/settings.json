@@ -1,7 +1,7 @@
 {
     "files.exclude": {
-        ".vscode": true,
-        "backend": true
+        ".vscode": false,
+        "backend": false
     },
-    "workspace.isHidden": true
+    "workspace.isHidden": false
 }
