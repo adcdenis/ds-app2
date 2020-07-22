@@ -6,7 +6,7 @@ module.exports = function (server) {
    */
   const protectedApi = express.Router()
   server.use('/api', protectedApi)
-  protectedApi.use(auth)
+  //protectedApi.use(auth)
   const Cliente = require('../api/clientes/clienteService')
   Cliente.register(protectedApi, '/clientes')
 

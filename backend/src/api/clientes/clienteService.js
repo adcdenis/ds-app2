@@ -115,6 +115,30 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   })
 })
 
+Cliente.route('summary', (req, res, next) => {
+
+  let dataAtual = moment().format('YYYY-MM-DD[T00:00:00.000Z]')
+
+  Cliente
+  .aggregate([
+    {
+      $match : { "vencimento": { $gte:  new Date(dataAtual) } }
+    },
+    {
+      $group: {_id:{servidor : '$servidor'}, count: { $sum: 1 }}
+    },
+    { $lookup: {from: 'clientes', localField: 'servidor', foreignField: '_id', as: 'tste'}}
+
+])
+  .exec((error, result) => {
+      if(error) {
+          res.status(500).json({errors: [error]})
+      } else {
+          res.json(result)
+      }
+  })
+})
+
 /*Cliente.route('summary', (req, res, next) => {
   Cliente.aggregate([{
       $project: {credit: {$sum: "$credits.value"}, debt: {$sum: "$debts.value"}} 
