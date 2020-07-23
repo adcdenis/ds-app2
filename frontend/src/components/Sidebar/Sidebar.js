@@ -18,6 +18,7 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 //import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import DesktopAccessDisabledOutlinedIcon from "@material-ui/icons/DesktopAccessDisabledOutlined";
+import BarChartIcon from '@material-ui/icons/BarChart';
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -72,6 +73,13 @@ const structure = [
     label: "Planos",
     link: "/app/planos",
     icon: <AccountBalanceIcon />,
+  },
+  { id: 6, type: "divider" },
+  {
+    id: 7,
+    label: "Clientes por Server",
+    link: "/app/graficoCliServ",
+    icon: <BarChartIcon/>,
   },
   /*{
     id: 1,

@@ -24,7 +24,6 @@ class Dashboard extends React.Component {
     return (
       <>
         <PageTitle title="DashBoard" />
-        
         <Grid
           container
           spacing={2}

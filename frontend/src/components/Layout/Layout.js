@@ -25,6 +25,7 @@ import ClienteVencido from "../../my_pages/cliente_vencido/clienteVencido";
 import DashboardMy from "../../my_pages/dashboard/dashboard";
 import Servidores from "../../my_pages/servidor/servidor";
 import Planos from "../../my_pages/planos/plano";
+import GrafCliServ from '../../my_pages/graficos/grafCliServer'
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -53,6 +54,7 @@ function Layout(props) {
             <Route path="/app/vencidos" component={ClienteVencido} />
             <Route path="/app/servidores" component={Servidores} />
             <Route path="/app/planos" component={Planos} />
+            <Route path="/app/graficoCliServ" component={GrafCliServ} />
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/notifications" component={Notifications} />
