@@ -1,14 +1,14 @@
 # ds-app2
 
-migrando tudo que fiz para um novo template material ui
-
 A Fazer:
-Multi usuário - Em andamento -> IMPLEMENTAR BACK END DO PLANO E SERVIDORES, FEITO DO CLIENTE
+Gráfico usuários por Servidor
 Testar api de formatação e máscara de input
 Criar componente de botões para utilizar em todas as páginas.
 Criar rodapé ?
 
 Feito:
+migrando tudo que fiz para um novo template material ui - OK
+Multi usuário - OK
 criar botao renovar a 30 dias OK - Rever regra
 Transição leve entre páginas OK em teste
 contador de itens vencidos no sino OK

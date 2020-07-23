@@ -48,7 +48,6 @@ Cliente.route('populate', (req, res, next) => {
  * Se tiver o parâmetro count só conta, se não tiver traz os registros conforme os filtros de day
  */
 Cliente.route('clientesbyfilters', (req, res, next) => {
-
   const userName = req.query.userName ? req.query.userName : 0
   const add = req.query.days ? req.query.days : 0
 
@@ -86,8 +85,7 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   }
 
   //Filtro de usuário
-  if(userName)
-   filter.userName = { $eq: userName}
+  if (userName) filter.userName = { $eq: userName }
 
   console.log(dataAtual)
   console.log(dataFutura)
@@ -115,27 +113,36 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   })
 })
 
-Cliente.route('summary', (req, res, next) => {
-
+Cliente.route('totaisServidor', (req, res, next) => {
   let dataAtual = moment().format('YYYY-MM-DD[T00:00:00.000Z]')
 
-  Cliente
-  .aggregate([
+  Cliente.aggregate([
     {
-      $match : { "vencimento": { $gte:  new Date(dataAtual) } }
+      $match: { vencimento: { $gte: new Date(dataAtual) } },
     },
     {
-      $group: {_id:{servidor : '$servidor'}, count: { $sum: 1 }}
+      $group: {
+        _id: { servidor: '$servidor' },
+        count: { $sum: 1 },
+        servidor: { $first: '$servidor' },
+      },
     },
-    { $lookup: {from: 'clientes', localField: 'servidor', foreignField: '_id', as: 'tste'}}
-
-])
-  .exec((error, result) => {
-      if(error) {
-          res.status(500).json({errors: [error]})
-      } else {
-          res.json(result)
-      }
+    {
+      $lookup: {
+        from: 'servidors',
+        localField: 'servidor',
+        foreignField: '_id',
+        as: 'servidor',
+      },
+    },
+    { $sort : { 'servidor.nome' : 1 } }
+    //{ $unwind: '$servidor' }
+  ]).exec((error, result) => {
+    if (error) {
+      res.status(500).json({ errors: [error] })
+    } else {
+      res.json(result)
+    }
   })
 })
 
