@@ -113,12 +113,19 @@ Cliente.route('clientesbyfilters', (req, res, next) => {
   })
 })
 
-Cliente.route('totaisServidor', (req, res, next) => {
+Cliente.route('totalClienteServidor', (req, res, next) => {
+
+  const userName = req.query.userName ? req.query.userName : 0
   let dataAtual = moment().format('YYYY-MM-DD[T00:00:00.000Z]')
+  let filter = { vencimento: { $gte: new Date(dataAtual) } }
+  if(filter) {
+    filter.userName = { $eq: userName }
+  }
+  console.log(filter)
 
   Cliente.aggregate([
     {
-      $match: { vencimento: { $gte: new Date(dataAtual) } },
+      $match: filter,
     },
     {
       $group: {

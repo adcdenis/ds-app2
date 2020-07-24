@@ -1,13 +1,13 @@
 {
     "files.exclude": {
-        ".vscode": true,
-        "backend": true,
-        "frontend/node_modules": true,
-        "frontend/package-lock.json": true,
-        "package-lock.json": true,
-        "frontend/LICENSE.txt": true,
-        "frontend/.gitignore": true,
-        "frontend/package.json": true
+        ".vscode": false,
+        "backend": false,
+        "frontend/node_modules": false,
+        "frontend/package-lock.json": false,
+        "package-lock.json": false,
+        "frontend/LICENSE.txt": false,
+        "frontend/.gitignore": false,
+        "frontend/package.json": false
     },
-    "workspace.isHidden": true
+    "workspace.isHidden": false
 }
