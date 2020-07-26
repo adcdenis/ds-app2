@@ -21,7 +21,8 @@ class GrafCliServ extends React.Component {
           options={this.props.result.options}
           series={this.props.result.series}
           type="bar"
-          width="70%"
+          width="95%"
+          height="70%"
         />
       </>
     )
