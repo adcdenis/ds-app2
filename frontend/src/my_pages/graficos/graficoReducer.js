@@ -51,20 +51,46 @@ function montaDados(totalClienteServidor) {
     dados[i] = total.count
     categorias[i] = total.servidor[0].nome
   }
-
-  //Categorias
-  let opcoes = INITIAL_STATE.options
-  opcoes.xaxis.categories = categorias
-  console.log(categorias)
-
-  //Valores
-  let valores = INITIAL_STATE.series
-  valores[0].data = dados
-  console.log(valores)
-
   let retorno = {}
-  retorno.options = opcoes
-  retorno.series = valores
+  retorno.options = {
+    chart: {
+      height: 350,
+      type: 'bar',
+      events: {
+        click: function(chart, w, e) {
+          // console.log(chart, w, e)
+        },
+      },
+    },
+    //colors: colors,
+    plotOptions: {
+      bar: {
+        columnWidth: '45%',
+        distributed: true,
+      },
+    },
+    dataLabels: {
+      enabled: true,
+    },
+    legend: {
+      show: false,
+    },
+    xaxis: {
+      categories: categorias,
+      labels: {
+        style: {
+          //colors: colors,
+          fontSize: '12px',
+        },
+      },
+    },
+  }
+
+  retorno.series = [
+    {
+      data: dados,
+    },
+  ]
   return retorno;
 }
 

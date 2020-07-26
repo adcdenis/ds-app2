@@ -12,9 +12,11 @@ class GrafCliServ extends React.Component {
   }
 
   render() {
+    console.log(this.props.result.options)
+    console.log(this.props.result.series)
     return (
       <>
-        <PageTitle title={`Clientes por Servidores - ${this.props.result.options}`} />
+        <PageTitle title={`Clientes por Servidores`} />
         <Chart
           options={this.props.result.options}
           series={this.props.result.series}
