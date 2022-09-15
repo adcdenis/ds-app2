@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "_id": "92c09363-0d97-4bec-abcf-5a696bd7c9ad",
+    "colId": "0f926726-ac06-4f48-acec-558445a8d40f",
+    "containerId": "",
+    "name": "Clientes com token jws no header",
+    "url": "localhost:3003/api/clientes",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-09T22:46:00.852Z",
+    "modified": "2022-09-09T22:46:00.852Z",
+    "headers": [
+      {
+        "name": "authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNWYxMzhlNjcxZGExYzMwNWU4MzA3NTI3Iiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwiZW1haWwiOiJpbml0IiwibmFtZSI6ImluaXQiLCJfaWQiOiJpbml0IiwiX192IjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsiX2lkIjp0cnVlLCJuYW1lIjp0cnVlLCJlbWFpbCI6dHJ1ZSwicGFzc3dvcmQiOnRydWUsIl9fdiI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sInBhdGhzVG9TY29wZXMiOnt9LCJjYWNoZWRSZXF1aXJlZCI6e30sIiRzZXRDYWxsZWQiOnt9LCJlbWl0dGVyIjp7Il9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9LCIkb3B0aW9ucyI6eyJza2lwSWQiOnRydWUsImlzTmV3IjpmYWxzZSwid2lsbEluaXQiOnRydWV9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9pZCI6IjVmMTM4ZTY3MWRhMWMzMDVlODMwNzUyNyIsIm5hbWUiOiJBbnRvbmlvIERlbmlsc29uIiwiZW1haWwiOiJhZGNkZW5pc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMiQ4RURZbmFudWx4TG5LZU05YXBDL2QuWEdmRjJmMUtJZzRkRkQvSWY1S2xKY09uMG5MR3h5MiIsIl9fdiI6MH0sIiRsb2NhbHMiOnt9LCIkb3AiOm51bGwsIiRpbml0Ijp0cnVlLCJpYXQiOjE2NjI3NjMyNTEsImV4cCI6MTY2Mjg0OTY1MX0.XyrFd9PWWfya6kA7KBajaCTqz0sItwI-284YZfLVmpQ"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "basic"
+    },
+    "tests": []
+  },
+  {
+    "_id": "f5c3b2e8-1439-4407-95ea-308f61e052f8",
+    "colId": "0f926726-ac06-4f48-acec-558445a8d40f",
+    "containerId": "",
+    "name": "Obter Token jwt",
+    "url": "localhost:3003/oapi/login",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-09-09T22:46:33.443Z",
+    "modified": "2022-09-09T22:46:33.443Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"adcdenis@gmail.com\",\n  \"password\":\"Isa30854165\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer"
+    },
+    "tests": []
+  }
+]

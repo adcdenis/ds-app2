@@ -1,1 +1,181 @@
-[]
+[
+  {
+    "_id": "e00b6653-ae1b-4af3-8627-4e4d772fe35f",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8080/api/",
+    "url": "localhost:8080/api/",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T19:02:12.028Z",
+    "modified": "2022-09-09T19:02:12.077Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5f9ba656-e39c-4005-a5e7-da2ca57f79b3",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://rptmdhcwgk.us12.qoddiapp.com:8080/api",
+    "url": "http://rptmdhcwgk.us12.qoddiapp.com:8080/api",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T19:18:58.501Z",
+    "modified": "2022-09-09T19:19:19.554Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f2e5fdcc-4e62-4cef-ae4b-6c9cadb96241",
+    "colId": "history",
+    "containerId": "",
+    "name": "rptmdhcwgk.us12.qoddiapp.com",
+    "url": "rptmdhcwgk.us12.qoddiapp.com",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T19:27:46.099Z",
+    "modified": "2022-09-09T19:27:46.497Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "dab0954e-0021-4a45-8f9f-6bfaaf71ab75",
+    "colId": "history",
+    "containerId": "",
+    "name": "rptmdhcwgk.us12.qoddiapp.com/api",
+    "url": "rptmdhcwgk.us12.qoddiapp.com/api",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T19:27:57.740Z",
+    "modified": "2022-09-09T19:27:58.085Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2697412a-4777-44dc-b990-bfaba47a8668",
+    "colId": "history",
+    "containerId": "",
+    "name": "rptmdhcwgk.us12.qoddiapp.com:8080/api",
+    "url": "rptmdhcwgk.us12.qoddiapp.com:8080/api",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T19:28:10.773Z",
+    "modified": "2022-09-09T19:29:49.777Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4aa502c4-25c3-4d91-975b-f75701d7eb76",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/api/clientes",
+    "url": "localhost:3000/api/clientes",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T22:20:02.109Z",
+    "modified": "2022-09-09T22:20:02.160Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "628fb490-472d-400f-a5b6-bb752f23ee96",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3003/api/clientes",
+    "url": "localhost:3003/oapi/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-09-09T22:20:27.977Z",
+    "modified": "2022-09-09T22:46:13.513Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"adcdenis@gmail.com\",\n  \"password\":\"Isa30854165\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer"
+    },
+    "tests": []
+  },
+  {
+    "_id": "cbe09cba-0a75-4ddd-aaee-18ab5d2e70f3",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3003/api/clientes?token=12345",
+    "url": "localhost:3003/api/clientes?token=12345",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T22:21:39.821Z",
+    "modified": "2022-09-09T22:21:39.832Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "token",
+        "value": "12345",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "basic"
+    },
+    "tests": []
+  },
+  {
+    "_id": "83312625-8aaa-43a6-a608-7eaaceb7945f",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3001/api/clientes",
+    "url": "localhost:3001/api/clientes",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T22:42:00.342Z",
+    "modified": "2022-09-09T22:42:00.347Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "65e85811-d323-44d6-9f9d-4044c3be63c5",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:30031/api/clientes",
+    "url": "localhost:30031/api/clientes",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T22:42:07.721Z",
+    "modified": "2022-09-09T22:42:07.725Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f5baeeae-76d1-4cb7-b3ee-c6b8f985f755",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3003/api/clientes",
+    "url": "localhost:3003/api/clientes",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-09T22:42:12.840Z",
+    "modified": "2022-09-09T22:44:22.214Z",
+    "headers": [
+      {
+        "name": "authorization",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNWYxMzhlNjcxZGExYzMwNWU4MzA3NTI3Iiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwiZW1haWwiOiJpbml0IiwibmFtZSI6ImluaXQiLCJfaWQiOiJpbml0IiwiX192IjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsiX2lkIjp0cnVlLCJuYW1lIjp0cnVlLCJlbWFpbCI6dHJ1ZSwicGFzc3dvcmQiOnRydWUsIl9fdiI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sInBhdGhzVG9TY29wZXMiOnt9LCJjYWNoZWRSZXF1aXJlZCI6e30sIiRzZXRDYWxsZWQiOnt9LCJlbWl0dGVyIjp7Il9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9LCIkb3B0aW9ucyI6eyJza2lwSWQiOnRydWUsImlzTmV3IjpmYWxzZSwid2lsbEluaXQiOnRydWV9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9pZCI6IjVmMTM4ZTY3MWRhMWMzMDVlODMwNzUyNyIsIm5hbWUiOiJBbnRvbmlvIERlbmlsc29uIiwiZW1haWwiOiJhZGNkZW5pc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMiQ4RURZbmFudWx4TG5LZU05YXBDL2QuWEdmRjJmMUtJZzRkRkQvSWY1S2xKY09uMG5MR3h5MiIsIl9fdiI6MH0sIiRsb2NhbHMiOnt9LCIkb3AiOm51bGwsIiRpbml0Ijp0cnVlLCJpYXQiOjE2NjI3NjMyNTEsImV4cCI6MTY2Mjg0OTY1MX0.XyrFd9PWWfya6kA7KBajaCTqz0sItwI-284YZfLVmpQ"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "basic"
+    },
+    "tests": []
+  }
+]

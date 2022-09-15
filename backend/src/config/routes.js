@@ -5,23 +5,29 @@ module.exports = function (server) {
    * Rotas protegidas por Token JWT
    */
   const protectedApi = express.Router()
-  server.use('/api', protectedApi)
+
   protectedApi.use(auth)
+
+  //API ABERTA
+  const openApi = express.Router()
+  server.use('/api', openApi)
+
+  //CLIENTE
   const Cliente = require('../api/clientes/clienteService')
-  Cliente.register(protectedApi, '/clientes')
+  Cliente.register(openApi, '/clientes')
 
   //SERVIDOR
   const Servidor = require('../api/servidores/servidorService')
-  Servidor.register(protectedApi, '/servidores')
+  Servidor.register(openApi, '/servidores')
 
   //PLANOS
   const Plano = require('../api/planos/planoService')
-  Plano.register(protectedApi, '/planos')
+  Plano.register(openApi, '/planos')
 
   /*
    * Rotas abertas
    */
-  const openApi = express.Router()
+ 
   server.use('/oapi', openApi)
   const AuthService = require('../api/user/authService')
   openApi.post('/login', AuthService.login)
