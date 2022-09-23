@@ -1,0 +1,39 @@
+docker build -t dstv-backend .
+
+-- ver imagens
+docker images
+
+-- rodar
+docker run dstv-backend
+
+--obter id do docker
+docker container ls
+
+--obter ip
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' 34a79e2ff16d
+
+-- roda numa porta liberando linha de comando
+docker run -p 3003:3003 -d dstv-backend
+
+-- roda numa porta NÃO liberando linha de comando
+docker run -p 3003:3003 dstv-backend
+
+-baixar docker ubuntu
+docker pull ubuntu
+
+-- baixar iterativamente
+docker run -it ubuntu
+
+
+--login no docker hub
+docker login --username=adcdenis
+
+--logar numa conta não root
+docker exec -it -u canuto 436e440b112b bash
+
+
+--logar no shell de um containe
+docker run -it dstv-backend sh
+
+-- criar imagem com tag
+docker build -t dstv:v1.0.0 .
