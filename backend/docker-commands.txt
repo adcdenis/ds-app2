@@ -37,3 +37,42 @@ docker run -it dstv-backend sh
 
 -- criar imagem com tag
 docker build -t dstv:v1.0.0 .
+
+-- rodar criando um alias
+docker run -d --name baleia dstv:1
+
+-- criando alias e passando uma porta -- TESTAR
+docker run -d -p 3003:3003 --name baleia dstv:1
+
+-- verificar logar -t = timestamp 28 = inicio do id
+docker logs  -t  28
+
+-- executar comandos num container -> piranha = alias dado
+docker exec piranha ls
+
+-- parando e iniciando containers
+docker stop banana
+docker start banana
+
+-- ver todos os containers incluse parados
+docker ps -a
+
+-- excluir container parado ou não -f
+docker rm tubarao -f
+
+-- criar volumes -> drives permanentes a serem associados a um container
+docker volume create dados
+
+-- iniciar um novo container e associar volume
+docker run -d -p 3003:3003 --name baleia -v dados:/app/dados  dstv:1
+
+-- copiar arquivos do container para a máquina local_
+docker cp baleia:/app/tranf.txt .
+
+da maquina local para o container
+docker cp test.txt baleia:app/
+
+
+
+
+
